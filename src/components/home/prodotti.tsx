@@ -15,7 +15,7 @@ export function Prodotti() {
                 I nostri prodotti
               </p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight text-verde-900 sm:text-4xl">
-                Quello che raccogliamo, quando lo raccogliamo
+                Sei filiere, un solo banco
               </h2>
             </div>
             <Link
@@ -28,7 +28,7 @@ export function Prodotti() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categorieProdotto.map((categoria, i) => (
             <Reveal key={categoria.nome} delay={i * 0.08}>
               <Link
@@ -40,7 +40,7 @@ export function Prodotti() {
                     src={categoria.image.src}
                     alt={categoria.image.alt}
                     fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

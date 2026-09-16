@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { territorioImage } from "@/lib/home-content";
+import { cooperativa } from "@/lib/cooperativa";
 
 export function Territorio() {
   return (
@@ -14,20 +15,22 @@ export function Territorio() {
               Il nostro territorio
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-verde-900 sm:text-4xl">
-              Le colline fra il Gran Sasso e l&apos;Adriatico
+              Dalle colline teramane al mare
             </h2>
             <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-foreground-muted">
               <p>
-                Lavoriamo nell&apos;area del GAL Terreverdi Teramane, dove i
-                campi salgono dal mare verso la montagna e cambiano carattere
-                ogni pochi chilometri. È una zona che non permette monocolture:
-                ogni appezzamento chiede la sua coltura e il suo tempo.
+                Le nostre campagne stanno fra Mosciano Sant&apos;Angelo,
+                Notaresco, Controguerra, Castellalto e Bellante: poche decine di
+                chilometri in cui il terreno cambia carattere salendo dalla
+                costa verso l&apos;interno. È una zona che non permette
+                monocolture, e da lì viene il nostro modo di lavorare.
               </p>
               <p>
-                Da qui viene il nostro modo di lavorare. Coltiviamo in
-                rotazione, raccogliamo quando il prodotto è pronto e non prima,
-                e teniamo traccia di ogni lotto: campo, comune, data di
-                raccolta.
+                Dal {cooperativa.annoFondazione} sei aziende agricole hanno
+                scelto di mettersi insieme invece di farsi concorrenza: ognuna
+                porta la sua specialità — orto, caseificio, cantina, frantoio,
+                forno e salumeria — e tutte confluiscono in un unico punto
+                vendita a Giulianova.
               </p>
             </div>
             <Link

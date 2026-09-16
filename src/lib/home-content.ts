@@ -1,14 +1,15 @@
 // ===========================================================================
 // Contenuti della home.
 //
-// TODO FOTO — Tutte le immagini qui sotto sono SEGNAPOSTO da Unsplash
-// (licenza free-to-use, nessuna attribuzione richiesta). Vanno sostituite
-// appena la cooperativa fornisce le foto reali del territorio, dei campi e
-// dei prodotti: a quel punto conviene spostarle in /public o su Supabase
-// Storage e togliere il remotePattern di images.unsplash.com da next.config.ts.
+// La copy è scritta da zero sui fatti reali della cooperativa (vedi
+// src/lib/cooperativa.ts). Nessun testo proviene da materiale di terzi.
 //
-// TODO COPY — I testi sono una prima stesura: vanno validati con la
-// cooperativa (in particolare storia, comuni e nomi delle esperienze).
+// TODO FOTO — Tutte le immagini sono SEGNAPOSTO da Unsplash (licenza
+// free-to-use, nessuna attribuzione richiesta). Vanno sostituite appena la
+// cooperativa fornisce le foto reali del territorio, del Mercato Contadino e
+// dei prodotti delle aziende socie: a quel punto conviene spostarle in
+// /public o su Supabase Storage e togliere il remotePattern di
+// images.unsplash.com da next.config.ts.
 // ===========================================================================
 
 /** URL Unsplash ottimizzato: formato automatico, crop, larghezza e qualità. */
@@ -37,27 +38,27 @@ export type Motivo = {
 export const motivi: Motivo[] = [
   {
     icona: "filiera",
-    titolo: "Filiera corta",
+    titolo: "Dal socio al banco",
     testo:
-      "Dal campo al banco di ritiro non c'è nessun passaggio intermedio: raccogliamo, prepariamo e consegniamo noi.",
+      "Fra chi coltiva e chi compra non c'è nessun passaggio intermedio: i prodotti arrivano al Mercato Contadino dalle aziende socie.",
   },
   {
     icona: "stagione",
     titolo: "Solo stagionalità",
     testo:
-      "Il catalogo cambia con i mesi. Trovi quello che la terra dà davvero in quel momento, non un assortimento fisso.",
+      "Il banco cambia con i mesi. Trovi quello che le nostre campagne danno davvero in quel momento, non un assortimento fisso.",
   },
   {
     icona: "cooperativa",
-    titolo: "Cooperativa di territorio",
+    titolo: "Sei aziende, una cooperativa",
     testo:
-      "Siamo soci che lavorano gli stessi terreni: le scelte si prendono insieme e il valore resta nelle colline teramane.",
+      "Dal 2008 sei realtà agricole del teramano mettono in comune raccolto, lavorazioni e punto vendita.",
   },
   {
     icona: "lotto",
-    titolo: "Ogni lotto tracciato",
+    titolo: "Sai da dove viene",
     testo:
-      "Per ogni partita sai campo, comune e data di raccolta. La tracciabilità è la nostra idea di genuinità.",
+      "Per ogni prodotto teniamo traccia dell'azienda socia, del comune e della data di raccolta o lavorazione.",
   },
 ];
 
@@ -67,37 +68,60 @@ export type CategoriaProdotto = {
   image: { src: string; alt: string };
 };
 
+/** Le sei filiere della cooperativa, una per azienda socia. */
 export const categorieProdotto: CategoriaProdotto[] = [
   {
-    nome: "Ortaggi di stagione",
-    descrizione: "Pomodori, zucchine, fagiolini e verdure a foglia raccolti in giornata.",
+    nome: "Ortaggi e legumi",
+    descrizione:
+      "Verdure di stagione e legumi dalla nostra azienda orticola, raccolti a pochi chilometri dal banco.",
     image: {
       src: unsplash("1627989147125-a004d05946d3", 800),
       alt: "Cesto di vimini pieno di pomodori, zucchine e fagiolini appena raccolti",
     },
   },
   {
-    nome: "Olio extravergine",
-    descrizione: "Dalle olive dei nostri uliveti, franto a freddo poco dopo la raccolta.",
+    nome: "Formaggi",
+    descrizione:
+      "Pecorino, ricotta e caciotte dal caseificio socio, prodotti con il latte delle greggi del teramano.",
+    image: {
+      src: unsplash("1566935404705-c22355bfa3ac", 800),
+      alt: "Forme di formaggio in stagionatura su assi di legno",
+    },
+  },
+  {
+    nome: "Vino",
+    descrizione:
+      "Montepulciano e Pecorino d'Abruzzo dalla cantina della cooperativa, sulle colline verso il confine marchigiano.",
+    image: {
+      src: unsplash("1759742269093-de3d9fed6714", 800),
+      alt: "Grappoli di uva nera maturi appesi alla vite in un vigneto",
+    },
+  },
+  {
+    nome: "Olio extravergine e olive",
+    descrizione:
+      "Dalle olive dei nostri uliveti, franto a freddo poco dopo la raccolta.",
     image: {
       src: unsplash("1474979266404-7eaacbcd87c5", 800),
       alt: "Ampolla di vetro con olio extravergine, olive e foglie d'ulivo",
     },
   },
   {
-    nome: "Cereali e legumi",
-    descrizione: "Grani e legumi coltivati in rotazione sui campi della cooperativa.",
+    nome: "Pane a lievito madre",
+    descrizione:
+      "Pagnotte a lunga lievitazione dal forno socio, sfornate ogni mattina.",
     image: {
-      src: unsplash("1529511582893-2d7e684dd128", 800),
-      alt: "Campo di grano maturo sotto un cielo azzurro",
+      src: unsplash("1549413468-cd78edb7e75c", 800),
+      alt: "Pagnotte di pane rustico infarinate appoggiate su un telo di juta",
     },
   },
   {
-    nome: "Cesta mista",
-    descrizione: "La selezione della settimana, composta da noi con il meglio del raccolto.",
+    nome: "Salumi",
+    descrizione:
+      "Insaccati stagionati dal salumificio della cooperativa, lavorati secondo le ricette di casa.",
     image: {
-      src: unsplash("1690934167884-08c184b6c606", 800),
-      alt: "Cesta di vimini con frutta e verdura miste appoggiata sull'erba",
+      src: unsplash("1786339283123-8c044f3ffc57", 800),
+      alt: "Salami interi e insaccati stagionati esposti su un banco di mercato",
     },
   },
 ];
@@ -111,8 +135,12 @@ export type EventoInEvidenza = {
 };
 
 /**
- * TODO DATI — segnaposto statici: da sostituire con gli slot di tipo 'evento'
- * letti da Supabase, con data e posti residui reali.
+ * TODO CLIENTE — proposte, non calendario confermato: i tre appuntamenti qui
+ * sotto sono costruiti sulle filiere reali della cooperativa ma vanno validati
+ * con il cliente.
+ *
+ * TODO DATI — una volta definito il modello, vanno letti dagli slot di tipo
+ * 'evento' su Supabase, con data e posti residui reali.
  */
 export const eventiInEvidenza: EventoInEvidenza[] = [
   {
@@ -120,29 +148,29 @@ export const eventiInEvidenza: EventoInEvidenza[] = [
     luogo: "Sala Degustazioni",
     periodo: "Date da definire",
     descrizione:
-      "Un percorso guidato fra olio, conserve e pane, con i soci che raccontano ogni lotto.",
+      "Un percorso guidato fra formaggi, salumi, pane e olio, raccontato da chi li produce.",
     image: {
       src: unsplash("1788660601189-861106e99899", 800),
       alt: "Tavolo conviviale con pane, olive e calici di vino condivisi fra più persone",
     },
   },
   {
-    titolo: "Raccolta guidata nell'uliveto",
-    luogo: "Campi della cooperativa",
+    titolo: "Giornata al frantoio",
+    luogo: "Frantoio della cooperativa",
     periodo: "Stagione della raccolta",
     descrizione:
-      "Una mattina fra gli alberi: si raccoglie insieme e si segue il percorso fino al frantoio.",
+      "Si raccoglie insieme fra gli ulivi e si segue il percorso delle olive fino alla molitura.",
     image: {
       src: unsplash("1635097087993-1dbe24dbc2f9", 800),
       alt: "Mani che selezionano olive verdi e nere appena raccolte",
     },
   },
   {
-    titolo: "Pranzo sotto la pergola",
-    luogo: "Corte della cooperativa",
-    periodo: "Da giugno a settembre",
+    titolo: "Tra i filari",
+    luogo: "Vigne di Controguerra",
+    periodo: "Da settembre a ottobre",
     descrizione:
-      "Tavolate all'ombra della vite, con i piatti costruiti sul raccolto del giorno.",
+      "Visita in vigna nel periodo della vendemmia, con assaggio di Montepulciano e Pecorino.",
     image: {
       src: unsplash("1784230804391-371d10702a54", 800),
       alt: "Tavoli e sedie di legno apparecchiati sotto un pergolato di vite",

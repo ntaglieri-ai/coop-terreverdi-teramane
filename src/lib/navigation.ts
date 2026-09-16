@@ -10,19 +10,19 @@ export const navItems: NavItem[] = [
     href: "/chi-siamo",
     label: "Chi siamo",
     description:
-      "La storia della cooperativa, i soci, i campi e i valori che guidano il nostro lavoro.",
+      "Le sei aziende socie, la storia dal 2008 e il modo in cui lavoriamo insieme.",
   },
   {
     href: "/la-spesa",
     label: "La spesa",
     description:
-      "Prenota i prodotti dell'orto e ritirali in cooperativa. Pagamento in loco al ritiro.",
+      "Prenota i prodotti delle aziende socie e ritirali al Mercato Contadino. Pagamento in loco.",
   },
   {
     href: "/eventi",
     label: "Eventi ed esperienze",
     description:
-      "Degustazioni in Sala e attività nei campi. Posti limitati, prenotazione online.",
+      "Degustazioni in Sala e visite alle aziende socie. Posti limitati, prenotazione online.",
   },
   {
     href: "/rassegna-stampa",
@@ -32,6 +32,6 @@ export const navItems: NavItem[] = [
   {
     href: "/contatti",
     label: "Contatti",
-    description: "Dove siamo, quando siamo aperti e come raggiungerci.",
+    description: "Indirizzo del Mercato Contadino a Giulianova, orari di apertura e recapiti.",
   },
 ];

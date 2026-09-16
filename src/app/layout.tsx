@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { cooperativa, puntoVendita } from "@/lib/cooperativa";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,11 +19,10 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Cooperativa Agricola Terre Verdi Teramane",
-    template: "%s — Terre Verdi Teramane",
+    default: cooperativa.nome,
+    template: `%s — ${cooperativa.nomeBreve}`,
   },
-  description:
-    "Cooperativa agricola nelle colline teramane: prodotti di stagione da prenotare e ritirare in sede, degustazioni ed esperienze nei campi.",
+  description: `Dal ${cooperativa.annoFondazione} riuniamo ${cooperativa.numeroAziende} aziende agricole del teramano. Ortaggi, formaggi, vino, olio, pane e salumi al ${puntoVendita.nome} di ${puntoVendita.comune}, con degustazioni ed esperienze nelle aziende socie.`,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

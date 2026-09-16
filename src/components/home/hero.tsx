@@ -28,7 +28,7 @@ export function Hero() {
 
       <Container className="relative z-10 pb-20 pt-32 sm:pb-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-terra-300/60 bg-verde-900/50 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-terra-200 backdrop-blur-sm">
-          Colline teramane · Abruzzo
+          Dal 2008 · Colline teramane
         </span>
 
         <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.08] text-white drop-shadow-sm sm:text-6xl">
@@ -36,8 +36,9 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-verde-100">
-          Portiamo in tavola prodotti di stagione tracciati dal campo al ritiro
-          e apriamo i nostri spazi a degustazioni ed esperienze.
+          Sei aziende agricole del teramano in un&apos;unica cooperativa. Quello
+          che coltiviamo e lavoriamo si trova al Mercato Contadino, a
+          Giulianova.
         </p>
 
         {/* Le due CTA hanno la stessa altezza e lo stesso peso nel layout:

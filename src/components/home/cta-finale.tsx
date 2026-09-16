@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
+import { indirizzoCompleto, puntoVendita } from "@/lib/cooperativa";
 
 export function CtaFinale() {
   return (
@@ -22,9 +23,10 @@ export function CtaFinale() {
                 Prenota la spesa
               </h3>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-verde-100">
-                Scegli dal catalogo di stagione, prenoti la fascia di ritiro e
-                paghi in cooperativa al momento del ritiro. Nessun pagamento
-                online, nessuna consegna.
+                Scegli dal banco di stagione, invii la prenotazione e ritiri al{" "}
+                {puntoVendita.nome} di {puntoVendita.comune}. Si paga in
+                cooperativa al momento del ritiro: nessun pagamento online,
+                nessuna consegna.
               </p>
               <Link
                 href="/la-spesa"
@@ -40,10 +42,13 @@ export function CtaFinale() {
               <h3 className="font-serif text-2xl font-semibold text-verde-800">
                 Vieni a trovarci
               </h3>
+              <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
+                Il {puntoVendita.nome} è in {indirizzoCompleto}. In Sala
+                Degustazioni e nelle aziende socie organizziamo assaggi e
+                visite: i posti sono limitati e si prenotano online.
+              </p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground-muted">
-                Degustazioni in Sala, raccolte guidate e attività nei campi: i
-                posti sono limitati e si prenotano online. Per gruppi e scuole
-                scrivici, costruiamo il programma insieme.
+                Per gruppi e scuole scrivici, costruiamo il programma insieme.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link

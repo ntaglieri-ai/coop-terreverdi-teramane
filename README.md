@@ -66,6 +66,32 @@ bianco → verde scuro → sabbia → crema) per dare scansione visiva allo scro
 
 Contenuti e immagini stanno in [`src/lib/home-content.ts`](src/lib/home-content.ts).
 
+## Dati della cooperativa
+
+Recapiti, orari, punto vendita e composizione del consorzio stanno in un solo
+posto: [`src/lib/cooperativa.ts`](src/lib/cooperativa.ts). Header, footer,
+home, contatti e la spesa leggono da lì — non duplicare indirizzo o orari nelle
+pagine.
+
+Fatti confermati: cooperativa attiva dal 2008, sei aziende agricole del
+teramano (orto a Mosciano Sant'Angelo, caseificio a Notaresco, cantina a
+Controguerra, frantoio a Castellalto, forno a Giulianova Paese, salumificio a
+Bellante), punto vendita "Mercato Contadino" in Via Galileo Galilei 24,
+Giulianova (TE), tel. 085 8003412.
+
+### Aperto col cliente
+
+I punti ancora da chiudere sono marcati `TODO CLIENTE` nel codice:
+
+- **Modalità di ritiro della spesa** — probabile cutoff giornaliero, non slot a
+  capienza. Finché non è confermato, le pagine restano neutre sul meccanismo e
+  lo schema `slot` / `prenotazioni` non va toccato.
+- **Ragioni sociali delle aziende socie** — ne conosciamo una su sei.
+- **Orari** — raccolti di seconda mano, da riconfermare.
+- **Calendario eventi** — i tre appuntamenti in home sono proposte, non
+  programmazione confermata.
+- Email di contatto, P. IVA, chi gestirà news e social, account Stripe.
+
 ### Foto segnaposto
 
 Tutte le immagini sono **segnaposto temporanei** presi da Unsplash (licenza
