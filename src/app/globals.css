@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Palette Terre Verdi Teramane
+   Ispirata al territorio del GAL: verdi di bosco e collina, terra
+   d'ocra, grano e pietra. Tono istituzionale ma premium.
+   ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Scala verde */
+  --tv-verde-900: #11301f;
+  --tv-verde-800: #17402a;
+  --tv-verde-700: #1e4a30;
+  --tv-verde-600: #266040;
+  --tv-verde-500: #2f7049;
+  --tv-verde-400: #55916a;
+  --tv-verde-300: #8ab396;
+  --tv-verde-200: #c2d8c8;
+  --tv-verde-100: #e2ecdf;
+
+  /* Scala terra / ocra */
+  --tv-terra-700: #71431c;
+  --tv-terra-600: #8a5423;
+  --tv-terra-500: #a8652a;
+  --tv-terra-400: #c08341;
+  --tv-terra-300: #d9a869;
+  --tv-terra-200: #ecd2ab;
+
+  /* Neutri: grano, pietra, carbone */
+  --tv-grano: #efe3c6;
+  --tv-crema: #f9f6ef;
+  --tv-sabbia: #f2ece0;
+  --tv-pietra-600: #5f5a4f;
+  --tv-pietra-400: #8d8778;
+  --tv-pietra-200: #d9d3c5;
+  --tv-carbone: #221f1a;
+
+  /* Token semantici */
+  --background: var(--tv-crema);
+  --surface: #ffffff;
+  --surface-muted: var(--tv-sabbia);
+  --foreground: var(--tv-carbone);
+  --foreground-muted: var(--tv-pietra-600);
+  --primary: var(--tv-verde-700);
+  --primary-hover: var(--tv-verde-800);
+  --primary-foreground: #ffffff;
+  --accent: var(--tv-terra-500);
+  --accent-foreground: #ffffff;
+  --border: var(--tv-pietra-200);
+  --border-strong: var(--tv-verde-200);
+  --ring: var(--tv-verde-500);
 }
 
 @theme inline {
+  --color-verde-900: var(--tv-verde-900);
+  --color-verde-800: var(--tv-verde-800);
+  --color-verde-700: var(--tv-verde-700);
+  --color-verde-600: var(--tv-verde-600);
+  --color-verde-500: var(--tv-verde-500);
+  --color-verde-400: var(--tv-verde-400);
+  --color-verde-300: var(--tv-verde-300);
+  --color-verde-200: var(--tv-verde-200);
+  --color-verde-100: var(--tv-verde-100);
+
+  --color-terra-700: var(--tv-terra-700);
+  --color-terra-600: var(--tv-terra-600);
+  --color-terra-500: var(--tv-terra-500);
+  --color-terra-400: var(--tv-terra-400);
+  --color-terra-300: var(--tv-terra-300);
+  --color-terra-200: var(--tv-terra-200);
+
+  --color-grano: var(--tv-grano);
+  --color-crema: var(--tv-crema);
+  --color-sabbia: var(--tv-sabbia);
+  --color-pietra-600: var(--tv-pietra-600);
+  --color-pietra-400: var(--tv-pietra-400);
+  --color-pietra-200: var(--tv-pietra-200);
+  --color-carbone: var(--tv-carbone);
+
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-source-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-source-serif), ui-serif, Georgia, serif;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 }
