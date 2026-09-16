@@ -34,6 +34,7 @@ Si lavora su `develop`; `main` si aggiorna via merge quando si va in produzione.
 src/
   app/                 route App Router, una cartella per pagina della sitemap
   components/          componenti condivisi (header, footer, hero, container)
+    home/              sezioni della home
   lib/                 dati e utility condivise
 supabase/
   schema.sql           schema DB + policy RLS (bozza, non ancora applicata)
@@ -49,6 +50,37 @@ supabase/
 | `/eventi`          | Sala Degustazioni e attività — pagamento Stripe   |
 | `/rassegna-stampa` | Articoli e servizi                                |
 | `/contatti`        | Orari, mappa, form                                |
+
+## Home
+
+La home segue questo ritmo di sezioni, con sfondi alternati (crema → sabbia →
+bianco → verde scuro → sabbia → crema) per dare scansione visiva allo scroll:
+
+1. Hero — foto a tutta larghezza con overlay a gradiente, badge ocra, due CTA appaiate
+2. Il nostro territorio — testo + immagine
+3. Perché sceglierci — quattro card con icone
+4. I nostri prodotti — anteprima categorie, link al catalogo
+5. Eventi in evidenza — fascia scura, tre card
+6. Rassegna stampa in evidenza
+7. CTA finale doppia — spesa vs eventi/contatto
+
+Contenuti e immagini stanno in [`src/lib/home-content.ts`](src/lib/home-content.ts).
+
+### Foto segnaposto
+
+Tutte le immagini sono **segnaposto temporanei** presi da Unsplash (licenza
+free-to-use, nessuna attribuzione richiesta) e caricati via `next/image` dal
+dominio `images.unsplash.com`, autorizzato in
+[`next.config.ts`](next.config.ts).
+
+Quando la cooperativa fornisce le foto reali del territorio, dei campi e dei
+prodotti: sostituirle in `src/lib/home-content.ts`, spostarle in `/public` o su
+Supabase Storage e rimuovere il `remotePatterns` di Unsplash. I punti da
+toccare sono marcati con `TODO FOTO` nel codice.
+
+Le micro-animazioni di ingresso usano `framer-motion` tramite
+[`src/components/reveal.tsx`](src/components/reveal.tsx) e rispettano
+`prefers-reduced-motion`.
 
 ## Palette
 

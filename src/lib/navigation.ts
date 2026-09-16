@@ -35,8 +35,3 @@ export const navItems: NavItem[] = [
     description: "Dove siamo, quando siamo aperti e come raggiungerci.",
   },
 ];
-
-/** I tre ingressi principali mostrati in home. */
-export const homeEntryPoints: NavItem[] = navItems.filter((item) =>
-  ["/chi-siamo", "/la-spesa", "/eventi"].includes(item.href),
-);
