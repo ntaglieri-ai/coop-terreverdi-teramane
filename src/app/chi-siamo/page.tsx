@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { PageHero } from "@/components/page-hero";
+import { Produttori } from "@/components/produttori";
 import { cooperativa, puntoVendita } from "@/lib/cooperativa";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 const blocchi = [
   {
     titolo: "Come è nata",
-    testo: `Nel ${cooperativa.annoFondazione} ${cooperativa.numeroAziende} aziende agricole del teramano hanno scelto di mettersi insieme. Ognuna faceva già il suo mestiere — chi l'orto, chi il formaggio, chi il vino — ma da sola arrivava a un mercato troppo piccolo. La cooperativa è nata per dare loro un banco comune.`,
+    testo: `Nel ${cooperativa.annoFondazione} sei aziende agricole del teramano hanno scelto di mettersi insieme. Ognuna faceva già il suo mestiere — chi l'orto, chi il formaggio, chi il vino — ma da sola arrivava a un mercato troppo piccolo. La cooperativa è nata per dare loro un banco comune.`,
   },
   {
     titolo: "Cosa facciamo",
@@ -29,7 +30,7 @@ export default function ChiSiamoPage() {
     <>
       <PageHero
         eyebrow="Chi siamo"
-        title={`${cooperativa.numeroAziende} aziende agricole, una cooperativa`}
+        title="Sei aziende agricole, una cooperativa"
         lead={`Dal ${cooperativa.annoFondazione} lavoriamo insieme sulle colline teramane e vendiamo quello che produciamo al ${puntoVendita.nome} di ${puntoVendita.comune}.`}
       />
 
@@ -49,8 +50,9 @@ export default function ChiSiamoPage() {
         ))}
       </Container>
 
-      {/* TODO CLIENTE — mancano storia dettagliata, nomi delle aziende socie
-          (ne conosciamo una sola su sei) e foto dei soci. */}
+      <Produttori />
+
+      {/* TODO CLIENTE — mancano la storia dettagliata e le foto dei soci. */}
     </>
   );
 }

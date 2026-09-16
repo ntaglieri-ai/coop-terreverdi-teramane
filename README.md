@@ -86,7 +86,9 @@ I punti ancora da chiudere sono marcati `TODO CLIENTE` nel codice:
 - **Modalità di ritiro della spesa** — probabile cutoff giornaliero, non slot a
   capienza. Finché non è confermato, le pagine restano neutre sul meccanismo e
   lo schema `slot` / `prenotazioni` non va toccato.
-- **Ragioni sociali delle aziende socie** — ne conosciamo una su sei.
+- **Ragioni sociali delle aziende socie** — ne conosciamo una su sei. Le sei
+  sono elencate su `/chi-siamo` (sezione "I nostri produttori") per attività e
+  comune; quando arrivano i nomi basta riempire `nome` in `cooperativa.ts`.
 - **Orari** — raccolti di seconda mano, da riconfermare.
 - **Calendario eventi** — i tre appuntamenti in home sono proposte, non
   programmazione confermata.
