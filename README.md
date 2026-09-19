@@ -60,7 +60,16 @@ supabase/
 | `/area-riservata/*`| Gestionale operatori — voce di menu dopo `Contatti`   |
 
 Menu principale: 🏠 · Chi siamo · Territorio · La spesa · Eventi ·
-Social & Media · Contatti, più il badge carrello.
+Social & Media · Contatti · Area riservata, più il badge carrello.
+
+L'header è **sticky** e sta su **una riga sola** a ogni larghezza: marchio a
+sinistra, menu al centro, pulsanti e carrello a destra. Il menu esteso
+compare da `xl`; sotto collassa nell'hamburger, mai in una seconda riga.
+Marchio, CTA principale e carrello restano visibili fino a 320px — sotto `sm`
+il wordmark cede il posto alla CTA e resta la sola rosetta.
+
+Un solo pulsante pieno per riga: `Prenota la spesa` è pieno in ocra,
+`Eventi` è outline.
 
 `Rassegna stampa` non sta nel menu per scelta: resta una pagina reale, con
 title e meta propri, raggiunta dal ticker in hero e dal footer.

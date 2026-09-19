@@ -15,7 +15,7 @@ export function BadgeCarrello({ className = "" }: { className?: string }) {
           ? "Carrello vuoto"
           : `Carrello, ${totaleArticoli} ${totaleArticoli === 1 ? "articolo" : "articoli"}`
       }
-      className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-carbone transition-colors hover:border-terra-400 hover:text-terra-600 ${className}`}
+      className={`relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-carbone transition-colors hover:border-terra-400 hover:text-terra-600 ${className}`}
     >
       <IconaCarrello className="h-5 w-5" />
       {totaleArticoli > 0 ? (

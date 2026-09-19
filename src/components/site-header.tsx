@@ -6,7 +6,7 @@ import { ctaItems, navItems, areaRiservataItem } from "@/lib/navigation";
 import { IconaCasa } from "@/components/icona-casa";
 
 /**
- * Marchio: rosetta del logo del cliente + wordmark tipografico su due righe.
+ * Marchio: rosetta del logo del cliente + wordmark tipografico.
  *
  * Il file fornito è un lockup completo a 316×274 px — troppo piccolo per
  * usarlo come immagine del titolo. Qui viene usata solo la rosetta e il testo
@@ -16,25 +16,31 @@ import { IconaCasa } from "@/components/icona-casa";
  * con margini trasparenti asimmetrici il box dell'immagine non coincide con
  * la rosetta e `items-center` centra il box, non il disegno.
  *
+ * Il sottotitolo compare solo da 2xl: sotto, in riga singola, lo spazio serve
+ * al menu.
+ *
  * TODO CLIENTE — chiedere il logo in vettoriale (SVG) o PNG trasparente ad
  * alta risoluzione.
  */
 function Marchio() {
   return (
-    <Link href="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
+    <Link
+      href="/"
+      className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
+    >
       <Image
         src="/logo-mercato-contadino-mark.png"
         alt=""
         width={147}
         height={141}
         priority
-        className="h-9 w-auto shrink-0 sm:h-11 lg:h-12"
+        className="h-9 w-auto shrink-0 sm:h-10"
       />
-      <span className="flex flex-col leading-none">
-        <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-xl">
+      <span className="hidden flex-col leading-none sm:flex">
+        <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-base 2xl:text-lg">
           Mercato Contadino
         </span>
-        <span className="mt-1 hidden whitespace-nowrap text-[0.7rem] tracking-[0.12em] text-pietra-600 sm:block">
+        <span className="mt-1 hidden whitespace-nowrap text-[0.65rem] tracking-[0.12em] text-pietra-600 2xl:block">
           delle Terre Verdi Teramane
         </span>
       </span>
@@ -42,39 +48,114 @@ function Marchio() {
   );
 }
 
+const classiCta = {
+  ocra: "bg-terra-500 text-white hover:bg-terra-600",
+  // Un solo pieno per riga: il secondo è outline, stessa altezza e peso.
+  verde:
+    "border border-verde-400 bg-transparent text-verde-700 hover:border-verde-700 hover:bg-verde-100",
+} as const;
+
+/**
+ * La CTA principale resta visibile a ogni larghezza, come il marchio e il
+ * carrello; la secondaria compare quando c'è spazio.
+ */
+const visibilitaCta = {
+  ocra: "inline-flex",
+  verde: "hidden lg:inline-flex",
+} as const;
+
+function VociNav({ compatto = false }: { compatto?: boolean }) {
+  return (
+    <>
+      <li>
+        <Link
+          href="/"
+          aria-label="Home"
+          className={
+            compatto
+              ? "flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
+              : "flex items-center text-carbone/80 transition-colors hover:text-verde-700"
+          }
+        >
+          <IconaCasa className={compatto ? "h-4 w-4" : "h-[1.15rem] w-[1.15rem]"} />
+          {compatto ? "Home" : null}
+        </Link>
+      </li>
+
+      {navItems.map((item) => (
+        <li key={item.href}>
+          <Link
+            href={item.href}
+            className={
+              compatto
+                ? "block rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
+                : "whitespace-nowrap text-[0.8125rem] font-medium text-carbone/80 transition-colors hover:text-verde-700"
+            }
+          >
+            {item.label}
+          </Link>
+        </li>
+      ))}
+
+      <li className={compatto ? "mt-1 border-t border-border pt-1" : "flex items-center"}>
+        <Link
+          href={areaRiservataItem.href}
+          className={
+            compatto
+              ? "block rounded-xl px-3 py-2.5 text-sm font-medium text-pietra-600 hover:bg-verde-100 hover:text-verde-800"
+              : "whitespace-nowrap border-l border-border pl-4 text-[0.8125rem] font-medium text-pietra-600 transition-colors hover:text-verde-700"
+          }
+        >
+          {areaRiservataItem.label}
+        </Link>
+      </li>
+    </>
+  );
+}
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-crema/95 backdrop-blur">
-      <Container className="flex items-center justify-between gap-5 py-3.5">
+      <Container className="flex h-16 items-center gap-4 lg:h-[4.5rem] xl:gap-6">
         <Marchio />
 
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3 xl:mr-16">
-          <div className="hidden items-center gap-2 lg:flex">
-            {ctaItems.map((cta) => (
-              <Link
-                key={cta.href}
-                href={cta.href}
-                className={
-                  cta.variante === "ocra"
-                    ? "inline-flex h-11 items-center whitespace-nowrap rounded-full bg-terra-500 px-6 text-sm font-semibold text-white transition-colors hover:bg-terra-600"
-                    : "inline-flex h-11 items-center whitespace-nowrap rounded-full bg-verde-700 px-9 text-sm font-semibold text-white transition-colors hover:bg-verde-800"
-                }
-              >
-                {cta.label}
-              </Link>
-            ))}
-          </div>
+        {/* Il menu occupa lo spazio fra marchio e pulsanti e ci sta al
+            centro. Sotto xl la riga non regge sette voci: collassa
+            nell'hamburger, non in una seconda riga. */}
+        <nav
+          aria-label="Navigazione principale"
+          className="hidden min-w-0 flex-1 justify-center xl:flex"
+        >
+          <ul className="flex items-center gap-3.5 2xl:gap-5">
+            <VociNav />
+          </ul>
+        </nav>
 
-          {/* Sopra xl il carrello sta nella seconda riga, accanto a Contatti. */}
-          <BadgeCarrello className="xl:hidden" />
+        <div className="ml-auto flex shrink-0 items-center gap-2 xl:ml-0 xl:gap-2.5">
+          {ctaItems.map((cta) => (
+            <Link
+              key={cta.href}
+              href={cta.href}
+              className={`h-10 items-center whitespace-nowrap rounded-full px-3.5 text-[0.8125rem] font-semibold transition-colors sm:px-5 ${visibilitaCta[cta.variante]} ${classiCta[cta.variante]}`}
+            >
+              {cta.label}
+            </Link>
+          ))}
 
-          {/* Menu compatto sotto xl: le sette voci non stanno in riga. */}
+          <BadgeCarrello />
+
           <details className="group relative xl:hidden">
-            <summary className="flex h-11 cursor-pointer list-none items-center gap-2 rounded-full border border-border px-4 text-sm font-medium text-carbone [&::-webkit-details-marker]:hidden">
-              Menu
+            <summary
+              aria-label="Apri il menu"
+              className="flex h-10 w-10 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-border text-sm font-medium text-carbone md:w-auto md:px-4 [&::-webkit-details-marker]:hidden"
+            >
+              <span aria-hidden="true" className="md:hidden">
+                ☰
+              </span>
+              <span className="hidden md:inline">Menu</span>
               <span
                 aria-hidden="true"
-                className="transition-transform group-open:rotate-180"
+                className="hidden transition-transform group-open:rotate-180 md:inline"
               >
                 ▾
               </span>
@@ -84,94 +165,23 @@ export function SiteHeader() {
               className="absolute right-0 mt-3 w-72 rounded-2xl border border-border bg-surface p-3 shadow-lg"
             >
               <ul className="flex flex-col">
-                <li>
-                  <Link
-                    href="/"
-                    className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
-                  >
-                    <IconaCasa className="h-4 w-4" />
-                    Home
-                  </Link>
-                </li>
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                <VociNav compatto />
               </ul>
-              <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
+              <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3 lg:hidden">
                 {ctaItems.map((cta) => (
                   <Link
                     key={cta.href}
                     href={cta.href}
-                    className={
-                      cta.variante === "ocra"
-                        ? "inline-flex h-11 items-center justify-center rounded-full bg-terra-500 px-6 text-sm font-semibold text-white"
-                        : "inline-flex h-11 items-center justify-center rounded-full bg-verde-700 px-6 text-sm font-semibold text-white"
-                    }
+                    className={`inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold ${classiCta[cta.variante]}`}
                   >
                     {cta.label}
                   </Link>
                 ))}
-                <Link
-                  href={areaRiservataItem.href}
-                  className="mt-1 px-3 py-2 text-xs font-medium text-pietra-600 hover:text-verde-700"
-                >
-                  {areaRiservataItem.label}
-                </Link>
               </div>
             </nav>
           </details>
         </div>
       </Container>
-
-      {/* Seconda riga sopra xl: le sette voci hanno bisogno di una riga loro,
-          altrimenti vanno a capo accanto a marchio e pulsanti. */}
-      <div className="hidden border-t border-border/70 xl:block">
-        <Container>
-          <div className="flex items-center justify-center gap-7 py-1.5 pr-16">
-            <nav aria-label="Navigazione principale">
-              <ul className="flex items-center gap-7">
-                <li>
-                  <Link
-                    href="/"
-                    aria-label="Home"
-                    className="flex items-center text-carbone/80 transition-colors hover:text-verde-700"
-                  >
-                    <IconaCasa className="h-5 w-5" />
-                  </Link>
-                </li>
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="whitespace-nowrap text-sm font-medium text-carbone/80 transition-colors hover:text-verde-700"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-                {/* Fra Contatti e il carrello, staccata: porta al gestionale,
-                    non e' una pagina per chi visita il sito. */}
-                <li>
-                  <Link
-                    href={areaRiservataItem.href}
-                    className="whitespace-nowrap border-l border-border pl-7 text-sm font-medium text-pietra-600 transition-colors hover:text-verde-700"
-                  >
-                    {areaRiservataItem.label}
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-            <BadgeCarrello />
-          </div>
-        </Container>
-      </div>
     </header>
   );
 }
