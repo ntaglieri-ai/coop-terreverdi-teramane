@@ -14,9 +14,16 @@
 
 import { unsplash, type Immagine } from "@/lib/immagini";
 
+/**
+ * Foto del banco, fornita dal cliente.
+ *
+ * TODO CLIENTE — il file è 1200×800: su schermi larghi viene ingrandito.
+ * Chiedere l'originale ad alta risoluzione, e una foto del banco reale del
+ * Mercato Contadino appena disponibile.
+ */
 export const heroImage: Immagine = {
-  src: unsplash("1601397702554-ce9ecbebc514", 2000),
-  alt: "Uliveto su una collina con un borgo di pietra e le montagne sullo sfondo",
+  src: "/hero-mercato-contadino.jpg",
+  alt: "Banco di mercato con cassette di pomodori, peperoni, zucchine, cetrioli, melanzane e carciofi",
 };
 
 export const territorioImage: Immagine = {

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/container";
 import { heroImage, rassegnaInEvidenza } from "@/lib/home-content";
 import { TickerRassegna } from "@/components/home/ticker-rassegna";
+import { Contattaci } from "@/components/home/contattaci";
 
 export function Hero() {
   return (
@@ -16,60 +16,38 @@ export function Hero() {
         className="object-cover"
       />
 
-      {/* Doppio strato: gradiente verticale per il testo in basso, velo verde
-          per legare la foto alla palette. */}
+      {/* La foto del banco è chiara e molto carica di dettaglio: serve un
+          overlay più deciso di quello che bastava sulla collina. Due strati —
+          gradiente verticale per il testo in basso, velo verde per legare la
+          foto alla palette. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-verde-900 via-verde-900/70 via-45% to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-verde-900 via-verde-900/80 via-45% to-verde-900/10"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-verde-900/12 mix-blend-multiply"
+        className="absolute inset-0 bg-verde-900/15 mix-blend-multiply"
       />
 
       <div className="relative z-10 flex min-h-[78vh] items-end">
-        {/* pb ridotto di quanto occupa "Contattaci": il blocco resta dove
-            era prima che il terzo bottone lo spingesse verso l'alto. */}
-        <Container className="pb-10 pt-32 sm:pb-14">
+        <Container className="pb-14 pt-32 sm:pb-16">
           <span className="inline-flex items-center gap-2 rounded-full border border-terra-300/60 bg-verde-900/50 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-terra-200 backdrop-blur-sm">
-            Dal 2008 · Colline teramane
+            Giulianova · Prodotti a km 0
           </span>
 
-          <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.08] text-white drop-shadow-sm sm:text-6xl">
-            Coltiviamo il territorio, una stagione alla volta
+          <h1 className="mt-5 max-w-3xl text-[2rem] font-semibold leading-[1.1] text-white drop-shadow-md sm:text-5xl lg:text-6xl">
+            La terra teramana, appena raccolta
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-verde-100">
-            Sei aziende agricole del teramano in un&apos;unica cooperativa.
-            Quello che coltiviamo e lavoriamo si trova al Mercato Contadino, a
-            Giulianova.
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-verde-100 drop-shadow sm:text-lg">
+            Al Mercato Contadino di Giulianova il banco cambia ogni giorno:
+            frutta e verdura di stagione, raccolte a pochi chilometri da qui e
+            portate da chi le coltiva.
           </p>
 
-          {/* Le due CTA hanno la stessa altezza e lo stesso peso nel layout:
-            cambia lo stile, non l'importanza. */}
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/la-spesa"
-              className="inline-flex h-13 items-center justify-center rounded-full bg-terra-500 px-8 text-base font-semibold text-white shadow-lg shadow-verde-900/30 transition-all hover:-translate-y-0.5 hover:bg-terra-600"
-            >
-              Prenota la spesa
-            </Link>
-            <Link
-              href="/eventi"
-              className="inline-flex h-13 items-center justify-center rounded-full border border-white/60 px-8 text-base font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white/15"
-            >
-              Scopri gli eventi
-            </Link>
+          <div className="mt-9">
+            <Contattaci />
           </div>
-
-          {/* Azione terziaria: riga propria, peso visivo minore delle due sopra */}
-          <Link
-            href="/contatti"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-verde-100 underline-offset-4 transition-colors hover:text-white hover:underline"
-          >
-            Contattaci
-            <span aria-hidden="true">→</span>
-          </Link>
         </Container>
       </div>
 

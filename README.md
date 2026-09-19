@@ -97,9 +97,9 @@ riceve davvero — orari, indirizzo, cosa si vende.
 La home segue questo ritmo di sezioni, con sfondi alternati (crema → sabbia →
 bianco → verde scuro → sabbia → crema) per dare scansione visiva allo scroll:
 
-1. Hero — foto a tutta larghezza con overlay a gradiente, badge ocra, due CTA
-   appaiate, "Contattaci" come azione terziaria e, in coda alla sezione, il
-   ticker della rassegna stampa
+1. Hero — foto del banco (file del cliente, in `public/`) con overlay a
+   gradiente, badge ocra, un solo pulsante "Contattaci" che apre il popup dei
+   canali di contatto e, in coda alla sezione, il ticker della rassegna stampa
 2. Barra statistiche — quattro numeri con icona, su fascia verde
 3. Il nostro territorio — testo + immagine, rimanda a `/territorio`
 4. Perché sceglierci — quattro card con icone
@@ -148,6 +148,16 @@ I punti ancora da chiudere sono marcati `TODO CLIENTE` nel codice:
   troppo piccolo per usarlo come immagine del titolo. Serve un SVG o un PNG
   trasparente grande.
 - Email di contatto, P. IVA, chi gestirà news e social, account Stripe.
+
+### Contatti in hero
+
+Il pulsante "Contattaci" apre un `<dialog>` nativo — focus trap, Esc e
+backdrop li gestisce il browser — con tre canali: WhatsApp, Telefono, Email.
+
+**Sono segnaposto senza azione**: i recapiti reali vanno in
+[`contattaci.tsx`](src/components/home/contattaci.tsx), dove i `TODO CLIENTE`
+indicano quale valore serve per ciascuno. I valori vanno letti da
+`cooperativa.ts`, non scritti nel componente.
 
 ### Foto segnaposto
 
