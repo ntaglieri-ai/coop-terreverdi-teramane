@@ -11,6 +11,10 @@ import { ctaItems, navItems, areaRiservataItem } from "@/lib/navigation";
  * usarlo come immagine del titolo. Qui viene usata solo la rosetta e il testo
  * è vera tipografia, così resta nitido a ogni densità.
  *
+ * Il ritaglio è esatto sui pixel opachi (147×141 dall'originale, offset 84,0):
+ * con margini trasparenti asimmetrici il box dell'immagine non coincide con
+ * la rosetta e `items-center` centra il box, non il disegno.
+ *
  * TODO CLIENTE — chiedere il logo in vettoriale (SVG) o PNG trasparente ad
  * alta risoluzione.
  */
@@ -20,8 +24,8 @@ function Marchio() {
       <Image
         src="/logo-mercato-contadino-mark.png"
         alt=""
-        width={208}
-        height={148}
+        width={147}
+        height={141}
         priority
         className="h-9 w-auto shrink-0 sm:h-11 lg:h-12"
       />
