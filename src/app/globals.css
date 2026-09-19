@@ -93,6 +93,18 @@
   --font-serif: var(--font-source-serif);
 }
 
+/* Entrata del bottom drawer dei contatti: l'uscita è una transizione sulla
+   classe, l'entrata no perché il pannello passa da display:none e una
+   transizione non partirebbe. */
+@keyframes drawer-sale {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   html {
     color-scheme: light;

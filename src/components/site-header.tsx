@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BadgeCarrello } from "@/components/carrello/badge-carrello";
-import { ctaItems, navItems, areaRiservataItem } from "@/lib/navigation";
-import { IconaCasa } from "@/components/icona-casa";
+import { AzioniHeaderMobile } from "@/components/mobile/azioni-header";
+import { VociNav } from "@/components/voci-nav";
+import { ctaItems } from "@/lib/navigation";
 
 /**
  * Marchio: rosetta del logo del cliente + wordmark tipografico.
@@ -15,8 +16,8 @@ import { IconaCasa } from "@/components/icona-casa";
  * con margini trasparenti asimmetrici il box dell'immagine non coincide con
  * la rosetta e `items-center` centra il box, non il disegno.
  *
- * Il sottotitolo compare solo da 2xl: sotto, in riga singola, lo spazio serve
- * al menu.
+ * Sotto lg resta il solo simbolo: la riga mobile è una sola e lo spazio serve
+ * ai tre comandi a destra. Il sottotitolo compare solo da 2xl.
  *
  * TODO CLIENTE — chiedere il logo in vettoriale (SVG) o PNG trasparente ad
  * alta risoluzione.
@@ -25,6 +26,7 @@ function Marchio() {
   return (
     <Link
       href="/"
+      aria-label="Mercato Contadino delle Terre Verdi Teramane, vai alla home"
       className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
     >
       <Image
@@ -35,7 +37,7 @@ function Marchio() {
         priority
         className="h-9 w-auto shrink-0 sm:h-10"
       />
-      <span className="hidden flex-col leading-none sm:flex">
+      <span className="hidden flex-col leading-none lg:flex">
         <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-base">
           Mercato Contadino
         </span>
@@ -55,62 +57,13 @@ const classiCta = {
 } as const;
 
 /**
- * La CTA principale resta visibile a ogni larghezza, come il marchio e il
- * carrello; la secondaria compare quando c'è spazio.
+ * Sotto lg le CTA testuali spariscono: su mobile la spesa e gli eventi hanno
+ * la loro voce nella bottom navigation, e il contatto è l'icona in header.
  */
 const visibilitaCta = {
-  ocra: "inline-flex",
+  ocra: "hidden lg:inline-flex",
   verde: "hidden lg:inline-flex",
 } as const;
-
-function VociNav({ compatto = false }: { compatto?: boolean }) {
-  return (
-    <>
-      <li>
-        <Link
-          href="/"
-          aria-label="Home"
-          className={
-            compatto
-              ? "flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
-              : "flex items-center text-carbone/80 transition-colors hover:text-verde-700"
-          }
-        >
-          <IconaCasa className={compatto ? "h-4 w-4" : "h-[1.15rem] w-[1.15rem]"} />
-          {compatto ? "Home" : null}
-        </Link>
-      </li>
-
-      {navItems.map((item) => (
-        <li key={item.href}>
-          <Link
-            href={item.href}
-            className={
-              compatto
-                ? "block rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
-                : "whitespace-nowrap text-[0.8125rem] font-medium text-carbone/80 transition-colors hover:text-verde-700"
-            }
-          >
-            {item.label}
-          </Link>
-        </li>
-      ))}
-
-      <li className={compatto ? "mt-1 border-t border-border pt-1" : "flex items-center"}>
-        <Link
-          href={areaRiservataItem.href}
-          className={
-            compatto
-              ? "block rounded-xl px-3 py-2.5 text-sm font-medium text-pietra-600 hover:bg-verde-100 hover:text-verde-800"
-              : "whitespace-nowrap border-l border-border pl-4 text-[0.8125rem] font-medium text-pietra-600 transition-colors hover:text-verde-700"
-          }
-        >
-          {areaRiservataItem.label}
-        </Link>
-      </li>
-    </>
-  );
-}
 
 export function SiteHeader() {
   return (
@@ -119,7 +72,7 @@ export function SiteHeader() {
           otto voci, due CTA e carrello non ci stanno nei 1104px di contenuto.
           Con quelli il menu sbordava di 28px e, per via di justify-center,
           finiva sopra il wordmark a sinistra e sopra i pulsanti a destra. */}
-      <div className="mx-auto flex h-16 w-full max-w-[80rem] items-center gap-4 px-6 lg:h-[4.5rem] xl:gap-6">
+      <div className="mx-auto flex h-16 w-full max-w-[80rem] items-center gap-4 px-4 sm:px-6 lg:h-[4.5rem] xl:gap-6">
         <Marchio />
 
         {/* Il menu occupa lo spazio fra marchio e pulsanti e ci sta al
@@ -145,9 +98,13 @@ export function SiteHeader() {
             </Link>
           ))}
 
-          <BadgeCarrello />
+          <span className="hidden lg:inline-flex">
+            <BadgeCarrello />
+          </span>
 
-          <details className="group relative xl:hidden">
+          {/* Fra lg e xl il menu desktop è ancora collassato: resta il
+              <details>, invariato. Sotto lg comanda AzioniHeaderMobile. */}
+          <details className="group relative hidden lg:block xl:hidden">
             <summary
               aria-label="Apri il menu"
               className="flex h-10 w-10 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-border text-sm font-medium text-carbone md:w-auto md:px-4 [&::-webkit-details-marker]:hidden"
@@ -170,19 +127,10 @@ export function SiteHeader() {
               <ul className="flex flex-col">
                 <VociNav compatto />
               </ul>
-              <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3 lg:hidden">
-                {ctaItems.map((cta) => (
-                  <Link
-                    key={cta.href}
-                    href={cta.href}
-                    className={`inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold ${classiCta[cta.variante]}`}
-                  >
-                    {cta.label}
-                  </Link>
-                ))}
-              </div>
             </nav>
           </details>
+
+          <AzioniHeaderMobile />
         </div>
       </div>
     </header>

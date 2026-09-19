@@ -14,8 +14,12 @@ export default function SitoLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <SiteFooter />
         {/* Spazio in coda: senza, la barra fissa coprirebbe l'ultima riga
-            del footer una volta arrivati in fondo. */}
-        <div aria-hidden="true" className="h-20 lg:hidden" />
+            del footer una volta arrivati in fondo. Misura esatta della bottom
+            navigation (h-16) piu' la safe area del device. */}
+        <div
+          aria-hidden="true"
+          className="h-[calc(4rem+env(safe-area-inset-bottom))] lg:hidden"
+        />
         <BarraMobile />
       </CarrelloProvider>
     </>

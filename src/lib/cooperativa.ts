@@ -29,6 +29,12 @@ export const puntoVendita = {
    * renderizzato, così non pubblichiamo un link morto.
    */
   whatsapp: null as string | null,
+  /**
+   * TODO CLIENTE — indirizzo email a cui recapitare i messaggi: ancora da
+   * ricevere. Finché resta null l'azione "Email" nel drawer dei contatti
+   * resta visibile ma disabilitata, invece di aprire un mailto vuoto.
+   */
+  email: null as string | null,
 };
 
 /** Query usata sia per il link a Maps sia per la mappa incorporata. */
