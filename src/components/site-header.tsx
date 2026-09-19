@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Container } from "@/components/container";
 import { BadgeCarrello } from "@/components/carrello/badge-carrello";
 import { ctaItems, navItems, areaRiservataItem } from "@/lib/navigation";
 import { IconaCasa } from "@/components/icona-casa";
@@ -37,7 +36,7 @@ function Marchio() {
         className="h-9 w-auto shrink-0 sm:h-10"
       />
       <span className="hidden flex-col leading-none sm:flex">
-        <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-base 2xl:text-lg">
+        <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-base">
           Mercato Contadino
         </span>
         <span className="mt-1 hidden whitespace-nowrap text-[0.65rem] tracking-[0.12em] text-pietra-600 2xl:block">
@@ -116,7 +115,11 @@ function VociNav({ compatto = false }: { compatto?: boolean }) {
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-crema/95 backdrop-blur">
-      <Container className="flex h-16 items-center gap-4 lg:h-[4.5rem] xl:gap-6">
+      {/* Container proprio, piu' largo del max-w-6xl delle pagine: marchio,
+          otto voci, due CTA e carrello non ci stanno nei 1104px di contenuto.
+          Con quelli il menu sbordava di 28px e, per via di justify-center,
+          finiva sopra il wordmark a sinistra e sopra i pulsanti a destra. */}
+      <div className="mx-auto flex h-16 w-full max-w-[80rem] items-center gap-4 px-6 lg:h-[4.5rem] xl:gap-6">
         <Marchio />
 
         {/* Il menu occupa lo spazio fra marchio e pulsanti e ci sta al
@@ -124,9 +127,9 @@ export function SiteHeader() {
             nell'hamburger, non in una seconda riga. */}
         <nav
           aria-label="Navigazione principale"
-          className="hidden min-w-0 flex-1 justify-center xl:flex"
+          className="hidden min-w-0 flex-1 justify-center overflow-hidden xl:flex"
         >
-          <ul className="flex items-center gap-3.5 2xl:gap-5">
+          <ul className="flex items-center gap-3.5 2xl:gap-4">
             <VociNav />
           </ul>
         </nav>
@@ -181,7 +184,7 @@ export function SiteHeader() {
             </nav>
           </details>
         </div>
-      </Container>
+      </div>
     </header>
   );
 }
