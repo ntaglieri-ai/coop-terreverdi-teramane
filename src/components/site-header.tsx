@@ -47,7 +47,7 @@ export function SiteHeader() {
       <Container className="flex items-center justify-between gap-5 py-3.5">
         <Marchio />
 
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3 xl:mr-12">
           <div className="hidden items-center gap-2 lg:flex">
             {ctaItems.map((cta) => (
               <Link
@@ -123,8 +123,8 @@ export function SiteHeader() {
           altrimenti vanno a capo accanto a marchio e pulsanti. */}
       <div className="hidden border-t border-border/70 xl:block">
         <Container>
-          <nav aria-label="Navigazione principale">
-            <ul className="flex items-center gap-8 py-2.5">
+          <nav aria-label="Navigazione principale" className="pr-12">
+            <ul className="flex items-center justify-center gap-8 py-2.5">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
