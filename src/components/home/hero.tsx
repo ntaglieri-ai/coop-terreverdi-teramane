@@ -36,7 +36,7 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 max-w-3xl text-[2rem] font-semibold leading-[1.1] text-white drop-shadow-md sm:text-5xl lg:text-6xl">
-            La spesa contadina, semplice e genuina.
+            La spesa contadina, semplice e genuina
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-verde-100 drop-shadow sm:text-lg">

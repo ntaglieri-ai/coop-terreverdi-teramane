@@ -102,7 +102,7 @@ export function Contattaci() {
                 id="titolo-contatti"
                 className="font-serif text-2xl font-semibold text-verde-900"
               >
-                Come preferisci scriverci?
+                Come preferisci contattarci?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
                 Scegli il canale che ti è più comodo.
