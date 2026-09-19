@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BarraMobile } from "@/components/barra-mobile";
 import { CarrelloProvider } from "@/components/carrello/carrello-provider";
+import { DatiStrutturati } from "@/components/dati-strutturati";
 import { cooperativa, puntoVendita } from "@/lib/cooperativa";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <DatiStrutturati />
         <CarrelloProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

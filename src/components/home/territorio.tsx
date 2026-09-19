@@ -34,10 +34,10 @@ export function Territorio() {
               </p>
             </div>
             <Link
-              href="/chi-siamo"
+              href="/territorio"
               className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-verde-700 transition-colors hover:text-terra-600"
             >
-              Conosci la cooperativa
+              Scopri il territorio
               <span aria-hidden="true">→</span>
             </Link>
           </Reveal>

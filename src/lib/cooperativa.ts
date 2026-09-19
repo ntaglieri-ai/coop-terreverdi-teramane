@@ -63,25 +63,72 @@ export const statistiche: Statistica[] = [
 
 export const indirizzoCompleto = `${puntoVendita.via}, ${puntoVendita.cap} ${puntoVendita.comune} (${puntoVendita.provincia})`;
 
-export type GiornoApertura = {
-  giorno: string;
-  /** Vuoto = chiuso. */
-  fasce: string[];
+export type Fascia = {
+  /** Formato 24h con zero iniziale, come vuole Schema.org. */
+  apre: string;
+  chiude: string;
 };
 
+export type GiornoApertura = {
+  giorno: string;
+  /** Nome inglese del giorno, per openingHoursSpecification. */
+  schema: string;
+  /** Vuoto = chiuso. */
+  fasce: Fascia[];
+};
+
+const MATTINA = { apre: "08:00", chiude: "13:00" };
+
 /**
- * TODO CLIENTE — orari da riconfermare: sono stati raccolti di seconda mano
- * e potrebbero essere solo indicativi.
+ * Orari strutturati: da qui escono sia la tabella a schermo sia i dati
+ * Schema.org. Tenerli come stringhe gia' formattate avrebbe richiesto di
+ * riparsarle per il JSON-LD.
+ *
+ * TODO CLIENTE — orari da riconfermare: raccolti di seconda mano, potrebbero
+ * essere solo indicativi.
  */
 export const orari: GiornoApertura[] = [
-  { giorno: "Lunedì", fasce: [] },
-  { giorno: "Martedì", fasce: ["8:00 – 13:00", "16:00 – 19:30"] },
-  { giorno: "Mercoledì", fasce: ["8:00 – 13:00", "16:00 – 19:30"] },
-  { giorno: "Giovedì", fasce: ["8:00 – 13:00", "16:00 – 19:30"] },
-  { giorno: "Venerdì", fasce: ["8:00 – 13:00", "16:00 – 20:00"] },
-  { giorno: "Sabato", fasce: ["8:00 – 13:30", "16:00 – 20:00"] },
-  { giorno: "Domenica", fasce: ["8:30 – 13:00"] },
+  { giorno: "Lunedì", schema: "Monday", fasce: [] },
+  {
+    giorno: "Martedì",
+    schema: "Tuesday",
+    fasce: [MATTINA, { apre: "16:00", chiude: "19:30" }],
+  },
+  {
+    giorno: "Mercoledì",
+    schema: "Wednesday",
+    fasce: [MATTINA, { apre: "16:00", chiude: "19:30" }],
+  },
+  {
+    giorno: "Giovedì",
+    schema: "Thursday",
+    fasce: [MATTINA, { apre: "16:00", chiude: "19:30" }],
+  },
+  {
+    giorno: "Venerdì",
+    schema: "Friday",
+    fasce: [MATTINA, { apre: "16:00", chiude: "20:00" }],
+  },
+  {
+    giorno: "Sabato",
+    schema: "Saturday",
+    fasce: [
+      { apre: "08:00", chiude: "13:30" },
+      { apre: "16:00", chiude: "20:00" },
+    ],
+  },
+  {
+    giorno: "Domenica",
+    schema: "Sunday",
+    fasce: [{ apre: "08:30", chiude: "13:00" }],
+  },
 ];
+
+/** "08:00 – 13:00" senza lo zero iniziale, come si scrive in italiano. */
+export function formattaFascia(fascia: Fascia) {
+  const senzaZero = (ora: string) => ora.replace(/^0/, "");
+  return `${senzaZero(fascia.apre)} – ${senzaZero(fascia.chiude)}`;
+}
 
 export type AziendaSocia = {
   /** Ragione sociale, dove la conosciamo. */
@@ -175,6 +222,17 @@ export const aziendeSocie: AziendaSocia[] = [
 export const fotoNegozio: Immagine = {
   src: unsplash("1773049566090-94ec4fe77df7", 1400),
   alt: "Interno di un negozio di ortofrutta con cassette di legno e banco di verdure",
+};
+
+/**
+ * Il banco, non la vetrina: serve dove `fotoNegozio` comparirebbe due volte
+ * nella stessa pagina.
+ *
+ * TODO FOTO — segnaposto, come le altre.
+ */
+export const fotoBanco: Immagine = {
+  src: unsplash("1591586116988-62fe65164f8d", 1200),
+  alt: "Banco di ortaggi freschi con finocchi, ravanelli, cavolfiori e broccoli",
 };
 
 /** I comuni del consorzio, per i testi che parlano di territorio. */

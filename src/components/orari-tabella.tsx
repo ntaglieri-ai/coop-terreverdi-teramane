@@ -1,4 +1,4 @@
-import { orari } from "@/lib/cooperativa";
+import { formattaFascia, orari } from "@/lib/cooperativa";
 
 export function OrariTabella({ className = "" }: { className?: string }) {
   return (
@@ -21,7 +21,7 @@ export function OrariTabella({ className = "" }: { className?: string }) {
               ) : (
                 <span className="flex flex-col sm:flex-row sm:gap-3">
                   {riga.fasce.map((fascia) => (
-                    <span key={fascia}>{fascia}</span>
+                    <span key={fascia.apre}>{formattaFascia(fascia)}</span>
                   ))}
                 </span>
               )}

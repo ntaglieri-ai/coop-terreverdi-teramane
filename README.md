@@ -43,33 +43,52 @@ supabase/
 
 ## Sitemap
 
-| Percorso           | Pagina                                                  |
-| ------------------ | ------------------------------------------------------- |
-| `/`                | Home                                                    |
-| `/chi-siamo`       | Storia, soci **e** il Mercato Contadino (punto vendita)  |
-| `/la-spesa`        | Catalogo e prenotazione — pagamento in loco             |
-| `/eventi`          | Eventi & Degustazioni — pagamento Stripe                |
-| `/rassegna-stampa` | Articoli e servizi                                      |
-| `/social`          | Canali e post                                           |
-| `/gallery`         | Gallery & Media (foto e video)                          |
-| `/contatti`        | Dove siamo, orari, mappa, form                          |
-| `/area-riservata`  | Login operatori, fuori dal menu principale              |
+| Percorso           | Pagina                                                |
+| ------------------ | ----------------------------------------------------- |
+| `/`                | Home (hero con ticker rassegna stampa)                |
+| `/chi-siamo`       | Storia, valori e carosello delle sei aziende socie    |
+| `/territorio`      | Colline teramane, Mercato Contadino e "Dove siamo"    |
+| `/la-spesa`        | Catalogo e prenotazione — pagamento in loco           |
+| `/eventi`          | Sala Degustazioni e visite — pagamento Stripe         |
+| `/social-media`    | Canali, foto e video                                  |
+| `/contatti`        | Recapiti, orari, mappa, form                          |
+| `/rassegna-stampa` | Articoli e servizi — **fuori dal menu**               |
+| `/area-riservata`  | Login operatori, fuori dal menu                       |
 
-`/mercato-contadino` era una pagina a sé: ora il punto vendita è una sezione
-di `/chi-siamo` e la vecchia rotta fa un redirect permanente a
-`/chi-siamo#mercato-contadino` (vedi [`next.config.ts`](next.config.ts)).
+Menu principale: 🏠 · Chi siamo · Territorio · La spesa · Eventi ·
+Social & Media · Contatti, più il badge carrello.
 
-`Eventi & Degustazioni` sta sia nel menu, accanto a `La spesa`, sia come
-pulsante in header accanto a `Prenota la spesa`.
+`Rassegna stampa` non sta nel menu per scelta: resta una pagina reale, con
+title e meta propri, raggiunta dal ticker in hero e dal footer.
+
+Redirect permanenti in [`next.config.ts`](next.config.ts):
+`/mercato-contadino` → `/territorio#mercato-contadino`, `/social` e
+`/gallery` → `/social-media`.
+
+### SEO e GEO
+
+Ogni pagina con contenuto sostanziale resta una **route propria** con title e
+meta description dedicati: non vanno trasformate in ancore della home. Vale
+per il posizionamento classico e per la citabilità da parte dei motori
+generativi, che preferiscono URL mirate a un singolo argomento.
+
+[`dati-strutturati.tsx`](src/components/dati-strutturati.tsx) emette il JSON-LD
+in ogni pagina: un nodo `Organization` per la cooperativa e uno `GroceryStore`
+per il Mercato Contadino, con indirizzo, telefono e
+`openingHoursSpecification` generata dagli orari strutturati di
+`cooperativa.ts`. È la leva più diretta sulle domande che un'attività locale
+riceve davvero — orari, indirizzo, cosa si vende.
 
 ## Home
 
 La home segue questo ritmo di sezioni, con sfondi alternati (crema → sabbia →
 bianco → verde scuro → sabbia → crema) per dare scansione visiva allo scroll:
 
-1. Hero — foto a tutta larghezza con overlay a gradiente, badge ocra, due CTA appaiate
+1. Hero — foto a tutta larghezza con overlay a gradiente, badge ocra, due CTA
+   appaiate, "Contattaci" come azione terziaria e, in coda alla sezione, il
+   ticker della rassegna stampa
 2. Barra statistiche — quattro numeri con icona, su fascia verde
-3. Il nostro territorio — testo + immagine
+3. Il nostro territorio — testo + immagine, rimanda a `/territorio`
 4. Perché sceglierci — quattro card con icone
 5. I nostri prodotti — le sei filiere, link al catalogo
 6. Slideshow — sei foto, pallini, autoplay che si ferma su hover e sotto

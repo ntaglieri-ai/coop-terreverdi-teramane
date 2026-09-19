@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { BadgeCarrello } from "@/components/carrello/badge-carrello";
 import { ctaItems, navItems, areaRiservataItem } from "@/lib/navigation";
+import { IconaCasa } from "@/components/icona-casa";
 
 /**
  * Marchio: rosetta del logo del cliente + wordmark tipografico su due righe.
@@ -83,6 +84,15 @@ export function SiteHeader() {
               className="absolute right-0 mt-3 w-72 rounded-2xl border border-border bg-surface p-3 shadow-lg"
             >
               <ul className="flex flex-col">
+                <li>
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-carbone/85 hover:bg-verde-100 hover:text-verde-800"
+                  >
+                    <IconaCasa className="h-4 w-4" />
+                    Home
+                  </Link>
+                </li>
                 {navItems.map((item) => (
                   <li key={item.href}>
                     <Link
@@ -127,6 +137,15 @@ export function SiteHeader() {
           <div className="flex items-center justify-center gap-7 py-1.5 pr-16">
             <nav aria-label="Navigazione principale">
               <ul className="flex items-center gap-7">
+                <li>
+                  <Link
+                    href="/"
+                    aria-label="Home"
+                    className="flex items-center text-carbone/80 transition-colors hover:text-verde-700"
+                  >
+                    <IconaCasa className="h-5 w-5" />
+                  </Link>
+                </li>
                 {navItems.map((item) => (
                   <li key={item.href}>
                     <Link

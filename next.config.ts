@@ -15,11 +15,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // La pagina del punto vendita e' confluita in Chi siamo.
+        // Il punto vendita e' una sezione di Territorio.
         source: "/mercato-contadino",
-        destination: "/chi-siamo#mercato-contadino",
+        destination: "/territorio#mercato-contadino",
         permanent: true,
       },
+      // Social e Gallery & Media sono diventate una pagina sola.
+      { source: "/social", destination: "/social-media", permanent: true },
+      { source: "/gallery", destination: "/social-media", permanent: true },
     ];
   },
 };

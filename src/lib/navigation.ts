@@ -8,15 +8,24 @@ export type NavItem = {
 /**
  * Menu principale.
  *
- * "Chi siamo" raccoglie anche il racconto del punto vendita: le due pagine
- * separate sono state unite, /mercato-contadino ora reindirizza qui.
+ * Ogni voce e' una route propria, non un'ancora della home: pagine con
+ * contenuto sostanziale devono restare indicizzabili e citabili una per una.
+ *
+ * "Rassegna stampa" non e' qui per scelta: resta una pagina reale, raggiunta
+ * dal ticker in hero e dal footer.
  */
 export const navItems: NavItem[] = [
   {
     href: "/chi-siamo",
     label: "Chi siamo",
     description:
-      "Le sei aziende socie, la storia dal 2008 e il Mercato Contadino di Giulianova.",
+      "Le sei aziende socie, la storia dal 2008 e il modo in cui lavoriamo insieme.",
+  },
+  {
+    href: "/territorio",
+    label: "Territorio",
+    description:
+      "Le colline teramane, il Mercato Contadino di Giulianova e come raggiungerci.",
   },
   {
     href: "/la-spesa",
@@ -26,24 +35,15 @@ export const navItems: NavItem[] = [
   },
   {
     href: "/eventi",
-    label: "Eventi & Degustazioni",
+    label: "Eventi",
     description:
       "Degustazioni in Sala e visite alle aziende socie. Posti limitati, prenotazione online.",
   },
   {
-    href: "/rassegna-stampa",
-    label: "Rassegna stampa",
-    description: "Articoli, servizi e riconoscimenti che parlano di noi.",
-  },
-  {
-    href: "/social",
-    label: "Social",
-    description: "Dove seguirci e cosa raccontiamo giorno per giorno.",
-  },
-  {
-    href: "/gallery",
-    label: "Gallery & Media",
-    description: "Foto e video del mercato, delle aziende socie e degli eventi.",
+    href: "/social-media",
+    label: "Social & Media",
+    description:
+      "I nostri canali, le foto e i video del mercato, dei soci e degli eventi.",
   },
   {
     href: "/contatti",
@@ -65,11 +65,17 @@ export const ctaItems: CtaItem[] = [
   { href: "/eventi", label: "Eventi", variante: "verde" },
 ];
 
+export const rassegnaItem: NavItem = {
+  href: "/rassegna-stampa",
+  label: "Rassegna stampa",
+  description: "Articoli, servizi e riconoscimenti che parlano di noi.",
+};
+
 export const areaRiservataItem: NavItem = {
   href: "/area-riservata",
   label: "Area riservata",
   description: "Accesso al pannello per gli operatori della cooperativa.",
 };
 
-/** Nel footer l'elenco del menu, per esteso. */
-export const footerItems: NavItem[] = navItems;
+/** Nel footer l'elenco e' completo: li' la rassegna stampa deve esserci. */
+export const footerItems: NavItem[] = [...navItems, rassegnaItem];
