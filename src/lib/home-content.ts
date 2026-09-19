@@ -12,17 +12,14 @@
 // images.unsplash.com da next.config.ts.
 // ===========================================================================
 
-/** URL Unsplash ottimizzato: formato automatico, crop, larghezza e qualità. */
-function unsplash(id: string, w: number) {
-  return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=72`;
-}
+import { unsplash, type Immagine } from "@/lib/immagini";
 
-export const heroImage = {
+export const heroImage: Immagine = {
   src: unsplash("1601397702554-ce9ecbebc514", 2000),
   alt: "Uliveto su una collina con un borgo di pietra e le montagne sullo sfondo",
 };
 
-export const territorioImage = {
+export const territorioImage: Immagine = {
   src: unsplash("1758903179366-b01ee06e7230", 1200),
   alt: "Pini che incorniciano un panorama di colline coltivate",
 };
@@ -195,5 +192,39 @@ export const rassegnaInEvidenza: VoceRassegna[] = [
     testata: "Testata da definire",
     data: "Data da definire",
     titolo: "Secondo articolo in evidenza",
+  },
+];
+
+/**
+ * Slideshow della home: sei scatti che attraversano le filiere della
+ * cooperativa, dal banco al campo.
+ *
+ * TODO FOTO — segnaposto: vanno sostituiti con foto reali del mercato, delle
+ * aziende socie e degli eventi.
+ */
+export const slideshow: Immagine[] = [
+  {
+    src: unsplash("1591586116988-62fe65164f8d", 1600),
+    alt: "Banco di ortaggi freschi con finocchi, ravanelli, cavolfiori e broccoli",
+  },
+  {
+    src: unsplash("1635097087993-1dbe24dbc2f9", 1600),
+    alt: "Mani che selezionano olive verdi e nere appena raccolte",
+  },
+  {
+    src: unsplash("1761489179799-c8ecad6ec719", 1600),
+    alt: "Filari di vite controluce al tramonto",
+  },
+  {
+    src: unsplash("1788660601189-861106e99899", 1600),
+    alt: "Tavolo conviviale con pane, olive e calici di vino condivisi fra più persone",
+  },
+  {
+    src: unsplash("1566935404705-c22355bfa3ac", 1600),
+    alt: "Forme di formaggio in stagionatura su assi di legno",
+  },
+  {
+    src: unsplash("1549413468-cd78edb7e75c", 1600),
+    alt: "Pagnotte di pane rustico infarinate su un telo di juta",
   },
 ];

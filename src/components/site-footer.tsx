@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { navItems } from "@/lib/navigation";
+import { areaRiservataItem, footerItems } from "@/lib/navigation";
 import { cooperativa, puntoVendita } from "@/lib/cooperativa";
 
 export function SiteFooter() {
@@ -26,7 +26,7 @@ export function SiteFooter() {
             Naviga
           </h2>
           <ul className="mt-5 flex flex-col gap-3">
-            {navItems.map((item) => (
+            {footerItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -61,6 +61,13 @@ export function SiteFooter() {
           >
             Orari e mappa
             <span aria-hidden="true">→</span>
+          </Link>
+
+          <Link
+            href={areaRiservataItem.href}
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-verde-700 px-4 py-2 text-xs font-medium text-verde-200 transition-colors hover:border-verde-300 hover:text-white"
+          >
+            {areaRiservataItem.label}
           </Link>
         </div>
       </Container>

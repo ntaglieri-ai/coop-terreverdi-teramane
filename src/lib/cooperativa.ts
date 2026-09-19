@@ -5,6 +5,8 @@
 // header, footer, contatti e home leggono da qui.
 // ===========================================================================
 
+import { unsplash, type Immagine } from "@/lib/immagini";
+
 export const cooperativa = {
   nome: "Cooperativa Agricola Terre Verdi Teramane",
   nomeBreve: "Terre Verdi Teramane",
@@ -21,7 +23,43 @@ export const puntoVendita = {
   telefono: "085 8003412",
   /** Formato E.164 per il link tel:. */
   telefonoHref: "+390858003412",
+  /**
+   * TODO CLIENTE — serve un numero di cellulare con WhatsApp attivo: il fisso
+   * 085 non funziona su wa.me. Finché resta null il bottone WhatsApp non viene
+   * renderizzato, così non pubblichiamo un link morto.
+   */
+  whatsapp: null as string | null,
 };
+
+/** Query usata sia per il link a Maps sia per la mappa incorporata. */
+const mapsQuery = encodeURIComponent(
+  `${puntoVendita.via}, ${puntoVendita.cap} ${puntoVendita.comune} ${puntoVendita.provincia}`,
+);
+
+export const mappa = {
+  /** Apre Maps in una scheda nuova. */
+  link: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
+  /** Iframe senza API key: Google risponde 301 e reindirizza a /maps/embed. */
+  embed: `https://www.google.com/maps?q=${mapsQuery}&output=embed`,
+};
+
+/**
+ * TODO CLIENTE — la nota sugli ordini dipende dal modello di ritiro, ancora da
+ * confermare (probabile cutoff giornaliero, non slot a capienza). Il testo qui
+ * sotto resta volutamente neutro sull'orario limite.
+ */
+export const notaOrdini =
+  "Le prenotazioni si ritirano in negozio durante gli orari di apertura. Ti confermiamo noi quando l'ordine è pronto.";
+
+export type Statistica = { valore: string; etichetta: string };
+
+/** Quattro numeri verificabili dai dati che il cliente ha confermato. */
+export const statistiche: Statistica[] = [
+  { valore: "6", etichetta: "aziende socie" },
+  { valore: "18", etichetta: "anni di attività" },
+  { valore: "6", etichetta: "comuni del teramano" },
+  { valore: "1", etichetta: "punto vendita" },
+];
 
 export const indirizzoCompleto = `${puntoVendita.via}, ${puntoVendita.cap} ${puntoVendita.comune} (${puntoVendita.provincia})`;
 
@@ -51,6 +89,8 @@ export type AziendaSocia = {
   attivita: string;
   comune: string;
   produzione: string;
+  /** TODO FOTO — segnaposto: servono le foto reali delle aziende e dei soci. */
+  immagine: Immagine;
 };
 
 /**
@@ -69,38 +109,73 @@ export const aziendeSocie: AziendaSocia[] = [
     attivita: "Azienda orticola",
     comune: "Mosciano Sant'Angelo",
     produzione: "Ortaggi e legumi",
+    immagine: {
+      src: unsplash("1627989147125-a004d05946d3", 800),
+      alt: "Cesto di ortaggi di stagione appena raccolti",
+    }
   },
   {
     nome: null,
     attivita: "Caseificio",
     comune: "Notaresco",
     produzione: "Pecorino, ricotta e caciotte",
+    immagine: {
+      src: unsplash("1566935404705-c22355bfa3ac", 800),
+      alt: "Forme di formaggio in stagionatura su assi di legno",
+    }
   },
   {
     nome: null,
     attivita: "Cantina",
     comune: "Controguerra",
     produzione: "Montepulciano e Pecorino d'Abruzzo",
+    immagine: {
+      src: unsplash("1759742269093-de3d9fed6714", 800),
+      alt: "Grappoli di uva nera maturi appesi alla vite",
+    }
   },
   {
     nome: null,
     attivita: "Frantoio",
     comune: "Castellalto",
     produzione: "Olio extravergine e olive",
+    immagine: {
+      src: unsplash("1474979266404-7eaacbcd87c5", 800),
+      alt: "Ampolla di vetro con olio extravergine e olive",
+    }
   },
   {
     nome: null,
     attivita: "Forno",
     comune: "Giulianova Paese",
     produzione: "Pane a lievito madre",
+    immagine: {
+      src: unsplash("1549413468-cd78edb7e75c", 800),
+      alt: "Pagnotte di pane rustico infarinate su un telo di juta",
+    }
   },
   {
     nome: null,
     attivita: "Salumificio",
     comune: "Bellante",
     produzione: "Salumi",
+    immagine: {
+      src: unsplash("1786339283123-8c044f3ffc57", 800),
+      alt: "Salami interi e insaccati stagionati su un banco",
+    }
   },
 ];
+
+/**
+ * Foto del punto vendita.
+ *
+ * TODO FOTO — segnaposto: serve la foto reale dell'ingresso del Mercato
+ * Contadino in Via Galileo Galilei.
+ */
+export const fotoNegozio: Immagine = {
+  src: unsplash("1773049566090-94ec4fe77df7", 1400),
+  alt: "Interno di un negozio di ortofrutta con cassette di legno e banco di verdure",
+};
 
 /** I comuni del consorzio, per i testi che parlano di territorio. */
 export const comuniConsorzio = aziendeSocie.map((a) => a.comune);

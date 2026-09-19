@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { BarraMobile } from "@/components/barra-mobile";
+import { CarrelloProvider } from "@/components/carrello/carrello-provider";
 import { cooperativa, puntoVendita } from "@/lib/cooperativa";
 import "./globals.css";
 
@@ -32,9 +34,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <CarrelloProvider>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+          {/* Spazio in coda: senza, la barra fissa coprirebbe l'ultima riga
+              del footer una volta arrivati in fondo. */}
+          <div aria-hidden="true" className="h-20 lg:hidden" />
+          <BarraMobile />
+        </CarrelloProvider>
       </body>
     </html>
   );

@@ -34,6 +34,7 @@ Si lavora su `develop`; `main` si aggiorna via merge quando si va in produzione.
 src/
   app/                 route App Router, una cartella per pagina della sitemap
   components/          componenti condivisi (header, footer, hero, container)
+    carrello/          stato del carrello, badge e icona
     home/              sezioni della home
   lib/                 dati e utility condivise
 supabase/
@@ -42,14 +43,21 @@ supabase/
 
 ## Sitemap
 
-| Percorso           | Pagina                                            |
-| ------------------ | ------------------------------------------------- |
-| `/`                | Home — hero, 3 ingressi, rassegna stampa          |
-| `/chi-siamo`       | Storia, cosa facciamo, valori                     |
-| `/la-spesa`        | Catalogo, slot di ritiro — pagamento in loco      |
-| `/eventi`          | Sala Degustazioni e attività — pagamento Stripe   |
-| `/rassegna-stampa` | Articoli e servizi                                |
-| `/contatti`        | Orari, mappa, form                                |
+| Percorso             | Pagina                                             |
+| -------------------- | -------------------------------------------------- |
+| `/`                  | Home                                               |
+| `/chi-siamo`         | Storia, valori e carosello delle sei aziende socie |
+| `/mercato-contadino` | Il punto vendita: cosa ci trovi e come funziona    |
+| `/la-spesa`          | Catalogo e prenotazione — pagamento in loco        |
+| `/eventi`            | Sala Degustazioni e visite — pagamento Stripe      |
+| `/rassegna-stampa`   | Articoli e servizi                                 |
+| `/social`            | Canali e post                                      |
+| `/gallery`           | Gallery & Media (foto e video)                     |
+| `/contatti`          | Dove siamo, orari, mappa, form                     |
+| `/area-riservata`    | Login operatori, fuori dal menu principale         |
+
+`Eventi` non sta nel menu principale: è un pulsante dedicato in header,
+accanto a `Prenota la spesa`. Nel footer l'elenco è completo.
 
 ## Home
 
@@ -57,12 +65,18 @@ La home segue questo ritmo di sezioni, con sfondi alternati (crema → sabbia �
 bianco → verde scuro → sabbia → crema) per dare scansione visiva allo scroll:
 
 1. Hero — foto a tutta larghezza con overlay a gradiente, badge ocra, due CTA appaiate
-2. Il nostro territorio — testo + immagine
-3. Perché sceglierci — quattro card con icone
-4. I nostri prodotti — anteprima categorie, link al catalogo
-5. Eventi in evidenza — fascia scura, tre card
-6. Rassegna stampa in evidenza
-7. CTA finale doppia — spesa vs eventi/contatto
+2. Barra statistiche — quattro numeri con icona, su fascia verde
+3. Il nostro territorio — testo + immagine
+4. Perché sceglierci — quattro card con icone
+5. I nostri prodotti — le sei filiere, link al catalogo
+6. Slideshow — sei foto, pallini, autoplay che si ferma su hover e sotto
+   `prefers-reduced-motion`
+7. Eventi in evidenza — fascia scura, tre card
+8. Rassegna stampa in evidenza
+9. CTA finale doppia — spesa vs eventi/contatto
+
+Per scelta **in home non c'è una sezione video**: i video stanno su
+[`/gallery`](src/app/gallery).
 
 Contenuti e immagini stanno in [`src/lib/home-content.ts`](src/lib/home-content.ts).
 
@@ -92,6 +106,12 @@ I punti ancora da chiudere sono marcati `TODO CLIENTE` nel codice:
 - **Orari** — raccolti di seconda mano, da riconfermare.
 - **Calendario eventi** — i tre appuntamenti in home sono proposte, non
   programmazione confermata.
+- **Numero WhatsApp** — il fisso 085 non funziona su `wa.me`. Serve un
+  cellulare: finché `puntoVendita.whatsapp` resta `null` il bottone non viene
+  renderizzato, per non pubblicare un link morto.
+- **Logo in alta risoluzione** — il file fornito è un lockup a 316×274 px,
+  troppo piccolo per usarlo come immagine del titolo. Serve un SVG o un PNG
+  trasparente grande.
 - Email di contatto, P. IVA, chi gestirà news e social, account Stripe.
 
 ### Foto segnaposto
@@ -110,6 +130,28 @@ Le micro-animazioni di ingresso usano `framer-motion` tramite
 [`src/components/reveal.tsx`](src/components/reveal.tsx) e rispettano
 `prefers-reduced-motion`.
 
+## Carrello
+
+La spesa è pensata come carrello multi-prodotto persistente durante la
+navigazione, non come form singolo. Lo stato vive in `localStorage`, letto con
+`useSyncExternalStore`
+([`carrello-store.ts`](src/components/carrello/carrello-store.ts)): in SSR lo
+snapshot è vuoto e React riallinea dopo l'idratazione, senza mismatch.
+
+È una comodità di navigazione, **non una fonte di verità**: quando il catalogo
+sarà collegato a Supabase, prezzi e disponibilità vanno riletti dal server al
+momento della prenotazione. Il contatore compare nel badge in header e nella
+barra fissa mobile.
+
+## Area riservata
+
+[`/area-riservata`](src/app/area-riservata) è il login operatori su Supabase
+Auth. Il form apre solo la sessione: **i permessi stanno nelle policy RLS su
+Postgres**, non in controlli applicativi sparsi.
+
+Il pannello di gestione non esiste ancora e **nessun utente Supabase è stato
+creato**: si fa quando il pannello è pronto da testare.
+
 ## Palette
 
 Le variabili CSS vivono in [`src/app/globals.css`](src/app/globals.css) e sono
@@ -117,7 +159,10 @@ esposte come utility Tailwind (`verde-*`, `terra-*`, `grano`, `crema`,
 `pietra-*`, `carbone`) più i token semantici `background`, `surface`,
 `foreground`, `primary`, `accent`, `border`.
 
-Il logo non è ancora definito: l'header usa un marchio testuale segnaposto.
+Il logo del cliente sta in [`public/`](public/):
+`logo-terre-verdi-teramane.png` è il lockup completo,
+`logo-mercato-contadino-mark.png` è la sola rosetta, ritagliata per l'header.
+Il wordmark accanto è composto in tipografia, non è un'immagine.
 
 ## Regole del progetto
 
