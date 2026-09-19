@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        // La pagina del punto vendita e' confluita in Chi siamo.
+        source: "/mercato-contadino",
+        destination: "/chi-siamo#mercato-contadino",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

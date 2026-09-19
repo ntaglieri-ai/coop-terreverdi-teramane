@@ -4,7 +4,7 @@ import { PageHero, Placeholder } from "@/components/page-hero";
 import { puntoVendita } from "@/lib/cooperativa";
 
 export const metadata: Metadata = {
-  title: "Eventi ed esperienze",
+  title: "Eventi & Degustazioni",
   description:
     "Degustazioni nella Sala Degustazioni e visite nelle aziende socie della Cooperativa Agricola Terre Verdi Teramane. Posti limitati, prenotazione e pagamento online.",
 };
@@ -13,7 +13,7 @@ export default function EventiPage() {
   return (
     <>
       <PageHero
-        eyebrow="Eventi ed esperienze"
+        eyebrow="Eventi & Degustazioni"
         title="Degustazioni in Sala e visite alle aziende socie"
         lead="Appuntamenti a posti limitati: si prenotano online e il posto si conferma con il pagamento."
       />

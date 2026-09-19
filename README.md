@@ -43,21 +43,24 @@ supabase/
 
 ## Sitemap
 
-| Percorso             | Pagina                                             |
-| -------------------- | -------------------------------------------------- |
-| `/`                  | Home                                               |
-| `/chi-siamo`         | Storia, valori e carosello delle sei aziende socie |
-| `/mercato-contadino` | Il punto vendita: cosa ci trovi e come funziona    |
-| `/la-spesa`          | Catalogo e prenotazione — pagamento in loco        |
-| `/eventi`            | Sala Degustazioni e visite — pagamento Stripe      |
-| `/rassegna-stampa`   | Articoli e servizi                                 |
-| `/social`            | Canali e post                                      |
-| `/gallery`           | Gallery & Media (foto e video)                     |
-| `/contatti`          | Dove siamo, orari, mappa, form                     |
-| `/area-riservata`    | Login operatori, fuori dal menu principale         |
+| Percorso           | Pagina                                                  |
+| ------------------ | ------------------------------------------------------- |
+| `/`                | Home                                                    |
+| `/chi-siamo`       | Storia, soci **e** il Mercato Contadino (punto vendita)  |
+| `/la-spesa`        | Catalogo e prenotazione — pagamento in loco             |
+| `/eventi`          | Eventi & Degustazioni — pagamento Stripe                |
+| `/rassegna-stampa` | Articoli e servizi                                      |
+| `/social`          | Canali e post                                           |
+| `/gallery`         | Gallery & Media (foto e video)                          |
+| `/contatti`        | Dove siamo, orari, mappa, form                          |
+| `/area-riservata`  | Login operatori, fuori dal menu principale              |
 
-`Eventi` non sta nel menu principale: è un pulsante dedicato in header,
-accanto a `Prenota la spesa`. Nel footer l'elenco è completo.
+`/mercato-contadino` era una pagina a sé: ora il punto vendita è una sezione
+di `/chi-siamo` e la vecchia rotta fa un redirect permanente a
+`/chi-siamo#mercato-contadino` (vedi [`next.config.ts`](next.config.ts)).
+
+`Eventi & Degustazioni` sta sia nel menu, accanto a `La spesa`, sia come
+pulsante in header accanto a `Prenota la spesa`.
 
 ## Home
 

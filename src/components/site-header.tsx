@@ -47,16 +47,16 @@ export function SiteHeader() {
       <Container className="flex items-center justify-between gap-5 py-3.5">
         <Marchio />
 
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3 xl:mr-12">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3 xl:mr-16">
           <div className="hidden items-center gap-2 lg:flex">
             {ctaItems.map((cta) => (
               <Link
                 key={cta.href}
                 href={cta.href}
                 className={
-                  cta.variante === "piena"
-                    ? "inline-flex h-11 items-center whitespace-nowrap rounded-full bg-terra-500 px-5 text-sm font-semibold text-white transition-colors hover:bg-terra-600"
-                    : "inline-flex h-11 items-center whitespace-nowrap rounded-full border border-verde-300 px-5 text-sm font-semibold text-verde-700 transition-colors hover:border-terra-400 hover:text-terra-600"
+                  cta.variante === "ocra"
+                    ? "inline-flex h-11 items-center whitespace-nowrap rounded-full bg-terra-500 px-6 text-sm font-semibold text-white transition-colors hover:bg-terra-600"
+                    : "inline-flex h-11 items-center whitespace-nowrap rounded-full bg-verde-700 px-9 text-sm font-semibold text-white transition-colors hover:bg-verde-800"
                 }
               >
                 {cta.label}
@@ -64,7 +64,8 @@ export function SiteHeader() {
             ))}
           </div>
 
-          <BadgeCarrello />
+          {/* Sopra xl il carrello sta nella seconda riga, accanto a Contatti. */}
+          <BadgeCarrello className="xl:hidden" />
 
           {/* Menu compatto sotto xl: le sette voci non stanno in riga. */}
           <details className="group relative xl:hidden">
@@ -99,9 +100,9 @@ export function SiteHeader() {
                     key={cta.href}
                     href={cta.href}
                     className={
-                      cta.variante === "piena"
-                        ? "inline-flex h-11 items-center justify-center rounded-full bg-terra-500 px-5 text-sm font-semibold text-white"
-                        : "inline-flex h-11 items-center justify-center rounded-full border border-verde-300 px-5 text-sm font-semibold text-verde-700"
+                      cta.variante === "ocra"
+                        ? "inline-flex h-11 items-center justify-center rounded-full bg-terra-500 px-6 text-sm font-semibold text-white"
+                        : "inline-flex h-11 items-center justify-center rounded-full bg-verde-700 px-6 text-sm font-semibold text-white"
                     }
                   >
                     {cta.label}
@@ -123,20 +124,23 @@ export function SiteHeader() {
           altrimenti vanno a capo accanto a marchio e pulsanti. */}
       <div className="hidden border-t border-border/70 xl:block">
         <Container>
-          <nav aria-label="Navigazione principale" className="pr-12">
-            <ul className="flex items-center justify-center gap-8 py-2.5">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="whitespace-nowrap text-sm font-medium text-carbone/80 transition-colors hover:text-verde-700"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="flex items-center justify-center gap-7 py-1.5 pr-16">
+            <nav aria-label="Navigazione principale">
+              <ul className="flex items-center gap-7">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="whitespace-nowrap text-sm font-medium text-carbone/80 transition-colors hover:text-verde-700"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <BadgeCarrello />
+          </div>
         </Container>
       </div>
     </header>
