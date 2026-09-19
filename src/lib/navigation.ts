@@ -72,7 +72,7 @@ export const rassegnaItem: NavItem = {
 };
 
 export const areaRiservataItem: NavItem = {
-  href: "/area-riservata",
+  href: "/area-riservata/dashboard",
   label: "Area riservata",
   description: "Accesso al pannello per gli operatori della cooperativa.",
 };

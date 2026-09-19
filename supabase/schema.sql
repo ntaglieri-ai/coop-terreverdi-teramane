@@ -29,7 +29,10 @@ CREATE TABLE prodotti (
 CREATE TABLE lotti (
   id SERIAL PRIMARY KEY,
   prodotto_id INTEGER REFERENCES prodotti(id),
-  codice_lotto VARCHAR,
+  -- Formato: 2-3 lettere di filiera, anno, progressivo. Es. ORT-2026-001.
+  -- Lo stesso controllo vive in src/lib/lotti.ts per la validazione lato form.
+  codice_lotto VARCHAR UNIQUE
+    CHECK (codice_lotto ~ '^[A-Z]{2,3}-[0-9]{4}-[0-9]{3}$'),
   prezzo NUMERIC(10,2),
   kg_disponibili NUMERIC(10,2),
   campo VARCHAR,

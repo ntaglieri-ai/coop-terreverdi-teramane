@@ -33,6 +33,9 @@ Si lavora su `develop`; `main` si aggiorna via merge quando si va in produzione.
 ```
 src/
   app/                 route App Router, una cartella per pagina della sitemap
+  app/
+    (sito)/            pagine pubbliche, con header/footer/barra carrello
+    area-riservata/    gestionale, con la sua sidebar e senza chrome pubblica
   components/          componenti condivisi (header, footer, hero, container)
     carrello/          stato del carrello, badge e icona
     home/              sezioni della home
@@ -53,7 +56,8 @@ supabase/
 | `/social-media`    | Canali, foto e video                                  |
 | `/contatti`        | Recapiti, orari, mappa, form                          |
 | `/rassegna-stampa` | Articoli e servizi — **fuori dal menu**               |
-| `/area-riservata`  | Login operatori, fuori dal menu                       |
+| `/traccia/[codice]`| Scheda pubblica di un lotto, per la scansione QR      |
+| `/area-riservata/*`| Gestionale operatori — voce di menu dopo `Contatti`   |
 
 Menu principale: 🏠 · Chi siamo · Territorio · La spesa · Eventi ·
 Social & Media · Contatti, più il badge carrello.
@@ -167,12 +171,38 @@ barra fissa mobile.
 
 ## Area riservata
 
-[`/area-riservata`](src/app/area-riservata) è il login operatori su Supabase
-Auth. Il form apre solo la sessione: **i permessi stanno nelle policy RLS su
-Postgres**, non in controlli applicativi sparsi.
+[`/area-riservata/*`](src/app/area-riservata) è il gestionale della
+cooperativa: dashboard, prenotazioni, prodotti, tracciabilità, impostazioni.
+Sta fuori dal route group `(sito)` e ha la sua chrome — sidebar a sinistra,
+drawer su mobile — perché non deve ereditare header pubblico, footer e barra
+carrello.
 
-Il pannello di gestione non esiste ancora e **nessun utente Supabase è stato
-creato**: si fa quando il pannello è pronto da testare.
+La dashboard legge da [`/api/area-riservata/dashboard`](src/app/api/area-riservata/dashboard/route.ts)
+con `useSWR` e `refreshInterval` di 30 secondi. Oggi la route risponde con
+dati di esempio e `demo: true`, e la pagina lo dichiara: quando il database
+sarà collegato leggerà da `prenotazioni`, `prodotti` e `lotti`.
+
+> **Nessuna autenticazione.** Le pagine sono raggiungibili da chiunque. Il
+> login via Supabase Auth arriva in un passaggio successivo: finché non c'è,
+> il gestionale non deve andare in produzione. La pagina di accesso esiste già
+> in [`src/app/area-riservata/page.tsx`](src/app/area-riservata/page.tsx) ma è
+> temporaneamente scavalcata da un redirect verso la dashboard.
+
+### Tracciabilità
+
+Ogni partita ha un codice di lotto nel formato `XX-YYYY-NNN` — due o tre
+lettere di filiera, anno, progressivo. Il formato vive in un posto solo,
+[`src/lib/lotti.ts`](src/lib/lotti.ts), e lo stesso vincolo è replicato come
+`CHECK` su Postgres in [`supabase/schema.sql`](supabase/schema.sql).
+
+Il codice punta a `/traccia/[codice]`, la pagina pubblica che il QR
+sull'etichetta apre: prodotto, filiera, azienda socia, campo, comune e data di
+raccolta.
+
+Gli stati di una prenotazione sono quelli del **nostro** modello — in attesa,
+confermata, ritirata, annullata — perché qui si ritira in negozio e non si
+spedisce. Le regole di passaggio fra stati, il cutoff e la capienza degli
+eventi vanno progettate da zero, non riprese da flussi di e-commerce.
 
 ## Palette
 

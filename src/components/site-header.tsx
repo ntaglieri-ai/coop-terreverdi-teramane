@@ -156,6 +156,16 @@ export function SiteHeader() {
                     </Link>
                   </li>
                 ))}
+                {/* Fra Contatti e il carrello, staccata: porta al gestionale,
+                    non e' una pagina per chi visita il sito. */}
+                <li>
+                  <Link
+                    href={areaRiservataItem.href}
+                    className="whitespace-nowrap border-l border-border pl-7 text-sm font-medium text-pietra-600 transition-colors hover:text-verde-700"
+                  >
+                    {areaRiservataItem.label}
+                  </Link>
+                </li>
               </ul>
             </nav>
             <BadgeCarrello />

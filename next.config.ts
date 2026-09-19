@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
       // Social e Gallery & Media sono diventate una pagina sola.
       { source: "/social", destination: "/social-media", permanent: true },
       { source: "/gallery", destination: "/social-media", permanent: true },
+      {
+        // TODO AUTH — finche' il login non e' attivo la radice dell'area
+        // riservata porta direttamente al gestionale. Quando ci sara'
+        // Supabase Auth, qui torna la pagina di accesso.
+        source: "/area-riservata",
+        destination: "/area-riservata/dashboard",
+        permanent: false,
+      },
     ];
   },
 };
