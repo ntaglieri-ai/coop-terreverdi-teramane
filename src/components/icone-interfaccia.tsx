@@ -85,15 +85,6 @@ export function IconaChiudi({ className = "" }: Props) {
   );
 }
 
-/** Lucide `message-circle`: il punto d'ingresso "Contattaci". */
-export function IconaContatti({ className = "" }: Props) {
-  return (
-    <svg {...tratto} className={className}>
-      <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.412-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-5.776-4.719" />
-    </svg>
-  );
-}
-
 export function IconaTelefono({ className = "" }: Props) {
   return (
     <svg {...tratto} className={className}>

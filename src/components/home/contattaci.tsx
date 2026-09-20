@@ -40,7 +40,7 @@ export function Contattaci() {
       <button
         type="button"
         onClick={() => setAperto(true)}
-        className="inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-terra-500 px-9 text-base font-semibold text-white shadow-lg shadow-verde-900/30 transition-all hover:-translate-y-0.5 hover:bg-terra-600 sm:h-[3.75rem] sm:px-12 sm:text-lg"
+        className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-terra-300/70 bg-verde-900/40 px-6 text-sm font-semibold text-terra-200 backdrop-blur-sm transition-colors hover:border-terra-200 hover:bg-verde-900/60 hover:text-white sm:h-12 sm:px-8 sm:text-base"
       >
         Contattaci
         <span aria-hidden="true">→</span>

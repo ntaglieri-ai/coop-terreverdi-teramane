@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
   IconaChiudi,
-  IconaContatti,
   IconaEmail,
   IconaTelefono,
   IconaWhatsApp,
@@ -112,7 +111,7 @@ export function DrawerContatti() {
         title="Contattaci"
         className="flex h-11 w-11 items-center justify-center rounded-xl text-carbone transition-colors hover:bg-verde-100 hover:text-verde-800"
       >
-        <IconaContatti className="h-[1.375rem] w-[1.375rem]" />
+        <IconaTelefono className="h-[1.375rem] w-[1.375rem]" />
       </button>
 
       <dialog

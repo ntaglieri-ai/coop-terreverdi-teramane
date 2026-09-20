@@ -16,8 +16,15 @@ import { ctaItems } from "@/lib/navigation";
  * con margini trasparenti asimmetrici il box dell'immagine non coincide con
  * la rosetta e `items-center` centra il box, non il disegno.
  *
- * Sotto lg resta il solo simbolo: la riga mobile è una sola e lo spazio serve
- * ai tre comandi a destra. Il sottotitolo compare solo da 2xl.
+ * Anche sotto lg il wordmark resta visibile, ma in corpo ridotto e con
+ * `truncate`: sulla riga mobile lo spazio è conteso con i tre comandi a
+ * destra, quindi il testo si può restringere ed eventualmente troncare
+ * invece di spingere le icone o restarci addosso.
+ *
+ * Il sottotitolo segue lo stesso spazio libero: c'è sotto lg, dove il menu
+ * è nell'hamburger e la riga ha margine, e torna da 2xl, quando la riga si
+ * allarga di nuovo. Nel mezzo (lg-2xl) sparisce perché lì la riga è già
+ * piena di voci di menu e CTA.
  *
  * TODO CLIENTE — chiedere il logo in vettoriale (SVG) o PNG trasparente ad
  * alta risoluzione.
@@ -27,7 +34,7 @@ function Marchio() {
     <Link
       href="/"
       aria-label="Mercato Contadino delle Terre Verdi Teramane, vai alla home"
-      className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
+      className="group flex min-w-0 shrink items-center gap-2 sm:gap-3"
     >
       <Image
         src="/logo-mercato-contadino-mark.png"
@@ -37,11 +44,11 @@ function Marchio() {
         priority
         className="h-9 w-auto shrink-0 sm:h-10"
       />
-      <span className="hidden flex-col leading-none lg:flex">
-        <span className="font-serif text-sm font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:whitespace-nowrap sm:text-base">
+      <span className="flex min-w-0 flex-col justify-center leading-none">
+        <span className="truncate font-serif text-[0.7rem] font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:text-sm lg:text-base">
           Mercato Contadino
         </span>
-        <span className="mt-1 hidden whitespace-nowrap text-[0.65rem] tracking-[0.12em] text-pietra-600 2xl:block">
+        <span className="mt-1 block truncate whitespace-nowrap text-[0.6rem] tracking-[0.1em] text-pietra-600 lg:hidden 2xl:block 2xl:text-[0.65rem] 2xl:tracking-[0.12em]">
           delle Terre Verdi Teramane
         </span>
       </span>
