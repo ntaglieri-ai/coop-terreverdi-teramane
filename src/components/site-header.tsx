@@ -33,7 +33,7 @@ function Marchio() {
   return (
     <Link
       href="/"
-      aria-label="Mercato Contadino delle Terre Verdi Teramane, vai alla home"
+      aria-label="Mercato Contadino Giulianova, Terre Verdi Teramane, vai alla home"
       className="group flex min-w-0 shrink items-center gap-2 sm:gap-3"
     >
       <Image
@@ -45,11 +45,11 @@ function Marchio() {
         className="h-9 w-auto shrink-0 sm:h-10"
       />
       <span className="flex min-w-0 flex-col justify-center leading-none">
-        <span className="truncate font-serif text-[0.7rem] font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:text-sm lg:text-base">
-          Mercato Contadino
+        <span className="truncate font-serif text-[0.62rem] font-bold uppercase leading-[1.1] tracking-tight text-verde-700 group-hover:text-verde-600 sm:text-[0.8rem] lg:text-sm">
+          Mercato Contadino Giulianova
         </span>
         <span className="mt-1 block truncate whitespace-nowrap text-[0.6rem] tracking-[0.1em] text-pietra-600 lg:hidden 2xl:block 2xl:text-[0.65rem] 2xl:tracking-[0.12em]">
-          delle Terre Verdi Teramane
+          Terre Verdi Teramane
         </span>
       </span>
     </Link>
