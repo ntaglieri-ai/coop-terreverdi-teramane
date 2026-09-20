@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/container";
-import { heroImage, rassegnaInEvidenza } from "@/lib/home-content";
-import { TickerRassegna } from "@/components/home/ticker-rassegna";
+import { heroImage } from "@/lib/home-content";
 import { Contattaci } from "@/components/home/contattaci";
 
 export function Hero() {
@@ -50,8 +49,6 @@ export function Hero() {
           </div>
         </Container>
       </div>
-
-      <TickerRassegna voci={rassegnaInEvidenza} />
     </section>
   );
 }

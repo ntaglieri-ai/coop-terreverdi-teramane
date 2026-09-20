@@ -33,39 +33,6 @@ export const territorioImage: Immagine = {
 
 export type IconaMotivo = "filiera" | "stagione" | "cooperativa" | "lotto";
 
-export type Motivo = {
-  titolo: string;
-  testo: string;
-  icona: IconaMotivo;
-};
-
-export const motivi: Motivo[] = [
-  {
-    icona: "filiera",
-    titolo: "Dal socio al banco",
-    testo:
-      "Fra chi coltiva e chi compra non c'è nessun passaggio intermedio: i prodotti arrivano al Mercato Contadino dalle aziende socie.",
-  },
-  {
-    icona: "stagione",
-    titolo: "Solo stagionalità",
-    testo:
-      "Il banco cambia con i mesi. Trovi quello che le nostre campagne danno davvero in quel momento, non un assortimento fisso.",
-  },
-  {
-    icona: "cooperativa",
-    titolo: "Sei aziende, una cooperativa",
-    testo:
-      "Dal 2008 sei realtà agricole del teramano mettono in comune raccolto, lavorazioni e punto vendita.",
-  },
-  {
-    icona: "lotto",
-    titolo: "Sai da dove viene",
-    testo:
-      "Per ogni prodotto teniamo traccia dell'azienda socia, del comune e della data di raccolta o lavorazione.",
-  },
-];
-
 export type CategoriaProdotto = {
   nome: string;
   descrizione: string;
@@ -179,26 +146,6 @@ export const eventiInEvidenza: EventoInEvidenza[] = [
       src: unsplash("1784230804391-371d10702a54", 800),
       alt: "Tavoli e sedie di legno apparecchiati sotto un pergolato di vite",
     },
-  },
-];
-
-export type VoceRassegna = {
-  testata: string;
-  data: string;
-  titolo: string;
-};
-
-/** TODO DATI — da sostituire con la lista aggiornabile dal pannello. */
-export const rassegnaInEvidenza: VoceRassegna[] = [
-  {
-    testata: "Testata da definire",
-    data: "Data da definire",
-    titolo: "Titolo dell'articolo in evidenza",
-  },
-  {
-    testata: "Testata da definire",
-    data: "Data da definire",
-    titolo: "Secondo articolo in evidenza",
   },
 ];
 
