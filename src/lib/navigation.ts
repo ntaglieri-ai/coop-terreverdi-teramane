@@ -25,13 +25,13 @@ export const navItems: NavItem[] = [
     href: "/territorio",
     label: "Territorio",
     description:
-      "Le colline teramane, il Mercato Contadino di Giulianova e come raggiungerci.",
+      "Le colline teramane fra i cinque comuni delle aziende socie e il calendario di stagionalità.",
   },
   {
     href: "/la-spesa",
     label: "La spesa",
     description:
-      "Prenota i prodotti delle aziende socie e ritirali al Mercato Contadino. Pagamento in loco.",
+      "Prenota i prodotti delle aziende socie e ritirali al Mercato Contadino di Giulianova. Pagamento in loco.",
   },
   {
     href: "/eventi",

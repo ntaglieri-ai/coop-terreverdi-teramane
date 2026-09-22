@@ -58,7 +58,7 @@ export function DatiStrutturati() {
         name: puntoVendita.nome,
         description: `Punto vendita della ${cooperativa.nome}: prodotti delle sei aziende socie, in ${indirizzoCompleto}.`,
         parentOrganization: { "@id": `${SITO}/#cooperativa` },
-        url: `${SITO}/territorio`,
+        url: `${SITO}/la-spesa`,
         address: indirizzo,
         telephone: puntoVendita.telefonoHref,
         currenciesAccepted: "EUR",

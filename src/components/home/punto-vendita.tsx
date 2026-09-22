@@ -5,10 +5,10 @@ import { Reveal } from "@/components/reveal";
 import { fotoBanco, indirizzoCompleto, puntoVendita } from "@/lib/cooperativa";
 
 /**
- * Il punto vendita, portato qui dalla pagina /territorio (sezione
- * "mercato-contadino"): stesso racconto e stessa foto. Non ripete "Cosa ci
- * trovi" perché in home la sezione Prodotti, subito dopo, mostra le stesse
- * sei filiere con le foto — elencarle di nuovo qui sarebbe ridondante.
+ * Il punto vendita, stesso racconto e stessa foto della sezione
+ * "mercato-contadino" su /la-spesa. Non ripete "Cosa ci trovi" perché in
+ * home la sezione Prodotti, subito dopo, mostra le stesse sei filiere con
+ * le foto — elencarle di nuovo qui sarebbe ridondante.
  */
 export function PuntoVenditaHome() {
   return (
@@ -54,7 +54,7 @@ export function PuntoVenditaHome() {
               </p>
             </div>
             <Link
-              href="/territorio#mercato-contadino"
+              href="/la-spesa#mercato-contadino"
               className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-verde-700 transition-colors hover:text-terra-600"
             >
               Tutti i dettagli sul punto vendita
