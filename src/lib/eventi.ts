@@ -6,8 +6,8 @@ import { getSupabaseServer } from "@/lib/supabase/server";
  * la cooperativa non fornisce scatti reali della Sala Degustazioni.
  */
 export const eventiHeroImage: Immagine = {
-  src: unsplash("1536392706976-e486e2ba97af", 1800),
-  alt: "Lunga tavolata apparecchiata con fiori e candele per una cena conviviale",
+  src: unsplash("1768121496277-8b9887bd6f7f", 1800),
+  alt: "Terrazza panoramica con luci a bulbo e tavoli apparecchiati al crepuscolo, colline sullo sfondo",
 };
 
 export type EventoPubblico = {
