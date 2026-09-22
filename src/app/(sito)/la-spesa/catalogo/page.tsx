@@ -29,6 +29,13 @@ export const viewport: Viewport = {
   themeColor: "#1e4a30",
 };
 
+/**
+ * Senza questo la pagina verrebbe prerenderizzata in build: il catalogo
+ * resterebbe congelato allo snapshot di allora invece di riflettere in
+ * tempo reale le attivazioni/disattivazioni fatte da Supabase.
+ */
+export const dynamic = "force-dynamic";
+
 export default async function CatalogoPage() {
   const prodotti = await getProdottiCatalogo();
 
