@@ -11,11 +11,17 @@ import { getSupabaseBrowser } from "@/lib/supabase/browser";
  * (vedi supabase/schema.sql). Questo form apre solo la sessione; sarà il
  * pannello a leggere e scrivere, e il database a decidere cosa può vedere chi.
  *
- * TODO — il pannello non esiste ancora, quindi dopo l'accesso non c'è dove
- * andare. Nessun utente Supabase è stato creato: si fa quando il pannello è
- * pronto da testare.
+ * `onAccesso` scatta appena c'è una sessione valida — sia da un login appena
+ * fatto sia da una sessione già aperta trovata al caricamento — e serve a chi
+ * usa il form per decidere dove mandare l'operatore dopo (vedi
+ * `scelta-gestione.tsx`). Nessun utente Supabase è stato creato: si fa quando
+ * il pannello è pronto da testare.
  */
-export function FormAccesso() {
+export function FormAccesso({
+  onAccesso,
+}: {
+  onAccesso?: (utente: User) => void;
+}) {
   // Il client si costruisce una volta sola, in inizializzazione pigra: se la
   // configurazione manca vogliamo saperlo subito, senza effetti che
   // impostano stato in modo sincrono.
@@ -59,6 +65,14 @@ export function FormAccesso() {
       sub.subscription.unsubscribe();
     };
   }, [config.supabase]);
+
+  useEffect(() => {
+    if (utente) onAccesso?.(utente);
+    // onAccesso volutamente fuori dalle dipendenze: è una callback che il
+    // chiamante può ridefinire a ogni render, qui deve scattare solo quando
+    // cambia lo stato di autenticazione, non quando cambia la funzione.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [utente]);
 
   async function accedi(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();

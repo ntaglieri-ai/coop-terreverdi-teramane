@@ -8,6 +8,7 @@ export const vociGestionale = [
   { href: "/area-riservata/dashboard", label: "Dashboard" },
   { href: "/area-riservata/ordini", label: "Prenotazioni" },
   { href: "/area-riservata/prodotti", label: "Prodotti" },
+  { href: "/area-riservata/eventi", label: "Eventi" },
   { href: "/area-riservata/tracciabilita", label: "Tracciabilità" },
   { href: "/area-riservata/impostazioni", label: "Impostazioni" },
 ];

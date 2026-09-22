@@ -53,8 +53,10 @@ CREATE TABLE slot (
   tipo VARCHAR NOT NULL, -- 'ricorrente' | 'evento'
   data DATE NOT NULL,
   fascia_oraria VARCHAR,
+  durata_minuti INTEGER,
   titolo VARCHAR,
   descrizione TEXT,
+  immagine VARCHAR,
   prezzo NUMERIC(10,2),
   capacita_max INTEGER NOT NULL,
   capacita_occupata INTEGER DEFAULT 0,

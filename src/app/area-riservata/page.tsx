@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { PageHero } from "@/components/page-hero";
-import { FormAccesso } from "@/app/area-riservata/form-accesso";
+import { SceltaGestione } from "@/app/area-riservata/scelta-gestione";
 
 export const metadata: Metadata = {
   title: "Area riservata",
@@ -20,7 +20,9 @@ export default function AreaRiservataPage() {
       />
 
       <Container className="py-16">
-        <FormAccesso />
+        <div className="mx-auto max-w-2xl">
+          <SceltaGestione />
+        </div>
       </Container>
     </>
   );

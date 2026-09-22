@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/container";
-import { PageHero, Placeholder } from "@/components/page-hero";
-import { puntoVendita } from "@/lib/cooperativa";
+import {
+  IconaCalendario,
+  IconaOrologio,
+  IconaPersone,
+} from "@/components/icone-interfaccia";
+import {
+  eventiHeroImage,
+  formattaDataEvento,
+  formattaDurata,
+  getEventiAttivi,
+  ultimiPosti,
+  type EventoPubblico,
+} from "@/lib/eventi";
 
 export const metadata: Metadata = {
   title: "Eventi & Degustazioni",
@@ -9,49 +22,156 @@ export const metadata: Metadata = {
     "Degustazioni nella Sala Degustazioni e visite nelle aziende socie della Cooperativa Agricola Terre Verdi Teramane. Posti limitati, prenotazione e pagamento online.",
 };
 
-export default function EventiPage() {
+/** Come per il catalogo: mai prerenderizzata, sennò gli eventi pubblicati
+ * dall'area riservata si vedrebbero solo al prossimo deploy. */
+export const dynamic = "force-dynamic";
+
+function CardEvento({ evento }: { evento: EventoPubblico }) {
+  const esaurito = evento.postiDisponibili <= 0;
+
+  return (
+    <article className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-sabbia">
+        {evento.immagine ? (
+          // eslint-disable-next-line @next/next/no-img-element -- host dinamico (Supabase Storage), non noto a build time
+          <img
+            src={evento.immagine}
+            alt={evento.titolo}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center font-serif text-3xl font-semibold text-verde-300">
+            {evento.titolo.charAt(0)}
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex flex-wrap gap-2">
+          <span className="inline-flex items-center rounded-full bg-verde-100 px-3 py-1 text-xs font-semibold text-verde-800">
+            Pagamento online richiesto
+          </span>
+          {esaurito ? (
+            <span className="inline-flex items-center rounded-full bg-pietra-200 px-3 py-1 text-xs font-semibold text-pietra-600">
+              Esaurito
+            </span>
+          ) : ultimiPosti(evento) ? (
+            <span className="inline-flex items-center rounded-full bg-terra-500 px-3 py-1 text-xs font-semibold text-white">
+              Ultimi posti
+            </span>
+          ) : null}
+        </div>
+
+        <h2 className="mt-4 font-serif text-xl font-semibold text-verde-900">
+          {evento.titolo}
+        </h2>
+        {evento.descrizione ? (
+          <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
+            {evento.descrizione}
+          </p>
+        ) : null}
+
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-foreground-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <IconaCalendario className="h-4 w-4 text-terra-600" />
+            {formattaDataEvento(evento)}
+          </span>
+          {evento.durataMinuti ? (
+            <span className="inline-flex items-center gap-1.5">
+              <IconaOrologio className="h-4 w-4 text-terra-600" />
+              {formattaDurata(evento.durataMinuti)}
+            </span>
+          ) : null}
+        </div>
+
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-x-5 gap-y-2 text-sm text-foreground-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <IconaPersone className="h-4 w-4 text-terra-600" />
+            Posti disponibili: {evento.postiDisponibili}
+          </span>
+          {evento.prezzo != null ? (
+            <span className="text-base font-semibold text-verde-900">
+              {evento.prezzo.toFixed(2)} €{" "}
+              <span className="text-sm font-normal text-foreground-muted">
+                a persona
+              </span>
+            </span>
+          ) : null}
+        </div>
+
+        {esaurito ? (
+          <span className="mt-6 inline-flex h-13 w-full items-center justify-center rounded-full bg-pietra-200 px-6 text-base font-semibold text-pietra-600">
+            Posti esauriti
+          </span>
+        ) : (
+          <Link
+            href="/contatti"
+            className="mt-6 inline-flex h-13 w-full items-center justify-center rounded-full bg-verde-700 px-6 text-base font-semibold text-white transition-colors hover:bg-verde-800"
+          >
+            Prenota il posto
+          </Link>
+        )}
+      </div>
+    </article>
+  );
+}
+
+export default async function EventiPage() {
+  const eventi = await getEventiAttivi();
+
   return (
     <>
-      <PageHero
-        eyebrow="Eventi & Degustazioni"
-        title="Degustazioni in Sala e visite alle aziende socie"
-        lead="Appuntamenti a posti limitati: si prenotano online e il posto si conferma con il pagamento."
-      />
+      <section className="relative isolate overflow-hidden">
+        <div className="relative aspect-[16/9] w-full sm:aspect-[21/9]">
+          <Image
+            src={eventiHeroImage.src}
+            alt={eventiHeroImage.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-verde-900 via-verde-900/60 to-verde-900/10"
+          />
+        </div>
+
+        <Container className="absolute inset-x-0 bottom-0 pb-10 sm:pb-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+            Sala Degustazioni
+          </p>
+          <h1 className="mt-3 max-w-2xl font-serif text-4xl font-semibold leading-tight text-white drop-shadow sm:text-5xl">
+            Eventi &amp; degustazioni
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-verde-100 drop-shadow sm:text-lg">
+            Serate piccole, i produttori seduti al tavolo con te. I posti si
+            prenotano e si pagano online.
+          </p>
+        </Container>
+      </section>
 
       <Container className="py-16">
-        <div className="grid gap-6 md:grid-cols-2">
-          <article className="rounded-2xl border border-border bg-surface p-8">
-            <h2 className="font-serif text-2xl font-semibold text-verde-800">
-              Sala Degustazioni
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
-              Lo spazio accanto al {puntoVendita.nome}, dove far incontrare le
-              sei filiere della cooperativa in un unico assaggio guidato.
-              {/* TODO CLIENTE — servono capienza, durata e formati reali. */}
+        {eventi.length === 0 ? (
+          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-border-strong bg-surface px-6 py-16 text-center">
+            <p className="font-serif text-lg font-semibold text-verde-800">
+              Nessun evento in programma al momento
             </p>
-          </article>
-          <article className="rounded-2xl border border-border bg-surface p-8">
-            <h2 className="font-serif text-2xl font-semibold text-verde-800">
-              Nelle aziende socie
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
-              Frantoio, cantina, caseificio e forno aprono le porte per visite e
-              raccolte guidate, seguendo il calendario delle lavorazioni.
-              {/* TODO CLIENTE — confermare quali aziende accolgono visite. */}
+            <p className="max-w-sm text-sm leading-relaxed text-foreground-muted">
+              Il calendario si aggiorna con le stagioni delle aziende socie:
+              torna a trovarci a breve.
             </p>
-          </article>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <Placeholder title="Calendario eventi">
-            Da implementare: appuntamenti con titolo, data, prezzo e posti
-            residui.
-          </Placeholder>
-          <Placeholder title="Prenotazione con pagamento">
-            Da implementare: form di prenotazione e checkout Stripe. Il
-            pagamento online vale solo per gli eventi, mai per la spesa.
-          </Placeholder>
-        </div>
+          </div>
+        ) : (
+          <ul className="grid gap-6 md:grid-cols-2">
+            {eventi.map((evento) => (
+              <li key={evento.id}>
+                <CardEvento evento={evento} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Container>
     </>
   );
