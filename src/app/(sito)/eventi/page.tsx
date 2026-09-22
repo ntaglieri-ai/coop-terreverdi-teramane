@@ -123,7 +123,7 @@ export default async function EventiPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div className="relative aspect-[16/9] w-full sm:aspect-[21/9]">
+        <div className="relative h-64 w-full sm:h-80">
           <Image
             src={eventiHeroImage.src}
             alt={eventiHeroImage.alt}
@@ -134,18 +134,18 @@ export default async function EventiPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-verde-900 via-verde-900/60 to-verde-900/10"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/85 via-carbone/25 to-transparent"
           />
         </div>
 
-        <Container className="absolute inset-x-0 bottom-0 pb-10 sm:pb-14">
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
             Sala Degustazioni
           </p>
-          <h1 className="mt-3 max-w-2xl font-serif text-4xl font-semibold leading-tight text-white drop-shadow sm:text-5xl">
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
             Eventi &amp; degustazioni
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-verde-100 drop-shadow sm:text-lg">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
             Serate piccole, i produttori seduti al tavolo con te. I posti si
             prenotano e si pagano online.
           </p>
