@@ -123,7 +123,7 @@ export default async function EventiPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-64 w-full sm:h-80">
+        <div className="relative h-72 w-full sm:h-[26rem]">
           <Image
             src={eventiHeroImage.src}
             alt={eventiHeroImage.alt}
