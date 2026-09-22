@@ -90,6 +90,19 @@ CREATE TABLE operatori (
   ruolo VARCHAR DEFAULT 'operatore' -- 'admin' | 'operatore'
 );
 
+-- ---------------------------------------------------------------------------
+-- Clienti del catalogo pubblico (La spesa), collegati a auth.users.
+-- Tabella separata da `operatori`: un cliente registrato non ha alcun
+-- accesso al gestionale, e viceversa.
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE clienti (
+  id UUID REFERENCES auth.users(id) PRIMARY KEY,
+  nome VARCHAR,
+  telefono VARCHAR,
+  email VARCHAR
+);
+
 -- ===========================================================================
 -- Row Level Security
 --
@@ -103,6 +116,7 @@ ALTER TABLE lotti ENABLE ROW LEVEL SECURITY;
 ALTER TABLE slot ENABLE ROW LEVEL SECURITY;
 ALTER TABLE prenotazioni ENABLE ROW LEVEL SECURITY;
 ALTER TABLE operatori ENABLE ROW LEVEL SECURITY;
+ALTER TABLE clienti ENABLE ROW LEVEL SECURITY;
 
 -- Helper: l'utente autenticato e' un operatore censito?
 -- SECURITY DEFINER per evitare ricorsione con le policy su `operatori`.
@@ -145,3 +159,9 @@ CREATE POLICY "prenotazioni gestite dagli operatori"
 CREATE POLICY "operatore vede se stesso"
   ON operatori FOR SELECT TO authenticated
   USING (id = auth.uid());
+
+-- Clienti: nessun accesso pubblico o fra operatori, solo il proprietario
+-- della riga (il checkout registrato la crea e la rilegge da sé).
+CREATE POLICY "cliente gestisce se stesso"
+  ON clienti FOR ALL TO authenticated
+  USING (id = auth.uid()) WITH CHECK (id = auth.uid());

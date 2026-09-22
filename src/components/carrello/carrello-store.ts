@@ -1,8 +1,16 @@
 export type VoceCarrello = {
-  /** Id del lotto, quando ci sarà il catalogo. */
+  /** Id del lotto. */
   id: string;
   nome: string;
   quantita: number;
+  /**
+   * Istantanea di prezzo e unità al momento dell'aggiunta, solo per mostrarli
+   * nel carrello: al momento della prenotazione vanno riletti dal server, mai
+   * fidarsi di questi valori per il totale definitivo.
+   */
+  prezzo?: number;
+  unita?: string;
+  immagine?: string | null;
 };
 
 const CHIAVE = "tvt-carrello";

@@ -62,7 +62,7 @@ export default function ChiSiamoPage() {
             Il territorio e il punto vendita
           </Link>
           <Link
-            href="/la-spesa"
+            href="/la-spesa/catalogo"
             className="inline-flex h-13 items-center justify-center rounded-full border border-verde-300 px-7 text-base font-semibold text-verde-700 transition-all hover:-translate-y-0.5 hover:border-terra-400 hover:text-terra-600"
           >
             Prenota la spesa

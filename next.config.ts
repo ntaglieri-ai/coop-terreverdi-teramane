@@ -15,9 +15,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // Il punto vendita e' una sezione di Territorio.
+        // Il punto vendita e' una sezione di La spesa.
         source: "/mercato-contadino",
-        destination: "/territorio#mercato-contadino",
+        destination: "/la-spesa#mercato-contadino",
         permanent: true,
       },
       // Social e Gallery & Media sono diventate una pagina sola.

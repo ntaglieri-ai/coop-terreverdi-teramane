@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/container";
-import { PageHero, Placeholder } from "@/components/page-hero";
+import { PageHero } from "@/components/page-hero";
 import { DoveSiamo } from "@/components/dove-siamo";
 import { categorieProdotto } from "@/lib/home-content";
 import { fotoBanco, indirizzoCompleto, puntoVendita } from "@/lib/cooperativa";
@@ -43,13 +44,13 @@ export default function LaSpesaPage() {
         title="Prenota i prodotti, ritira in negozio"
         lead={`Ortaggi, formaggi, vino, olio, pane e salumi delle aziende socie, da ritirare al ${puntoVendita.nome} di ${puntoVendita.comune}.`}
       >
-        <a
-          href="#catalogo"
+        <Link
+          href="/la-spesa/catalogo"
           className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-terra-500 px-8 text-base font-semibold text-white shadow-lg shadow-terra-500/20 transition-all hover:-translate-y-0.5 hover:bg-terra-600"
         >
           Vai al catalogo
           <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       </PageHero>
 
       {/* ------------------------------------------------------------------
@@ -140,38 +141,6 @@ export default function LaSpesaPage() {
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      {/* ------------------------------------------------------------------
-          Catalogo e prenotazione: il cuore della pagina, raggiunto dalla CTA
-          in hero.
-          ------------------------------------------------------------------ */}
-      <section id="catalogo" className="scroll-mt-20 bg-crema py-24">
-        <Container>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-600">
-            Catalogo
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight text-verde-900 sm:text-4xl">
-            Cosa prenoti oggi
-          </h2>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground-muted">
-            Il catalogo e il form qui sotto sono la parte della pagina ancora
-            da costruire: qui arriveranno l&apos;elenco dei prodotti attivi e
-            la prenotazione vera e propria.
-          </p>
-
-          <div className="mt-10 grid items-start gap-6 lg:grid-cols-2">
-            <Placeholder title="Catalogo prodotti">
-              Da implementare: elenco dei prodotti attivi con lotto, prezzo,
-              unità di misura e disponibilità, letti da Supabase.
-            </Placeholder>
-            <Placeholder title="Form di prenotazione">
-              Da implementare: raccolta dei dati di contatto e del carrello,
-              con conferma via email. Il meccanismo di ritiro dipende dalla
-              modalità che confermerà la cooperativa.
-            </Placeholder>
-          </div>
         </Container>
       </section>
 

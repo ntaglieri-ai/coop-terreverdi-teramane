@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCarrello } from "@/components/carrello/carrello-provider";
 import { IconaCarrello } from "@/components/carrello/icona-carrello";
 
@@ -14,6 +13,10 @@ import { IconaCarrello } from "@/components/carrello/icona-carrello";
  * a mezz'aria contro il bordo dell'header.
  *
  * La variante `bordata` è quella dell'header desktop e resta com'era.
+ *
+ * Apre il drawer del carrello (stato condiviso nel CarrelloProvider) invece
+ * di navigare: un solo dialog globale, apribile da qui come dall'header
+ * mobile, senza duplicarlo.
  */
 export function BadgeCarrello({
   variante = "bordata",
@@ -22,7 +25,7 @@ export function BadgeCarrello({
   variante?: "bordata" | "pulita";
   className?: string;
 }) {
-  const { totaleArticoli } = useCarrello();
+  const { totaleArticoli, apri } = useCarrello();
 
   const pulita = variante === "pulita";
 
@@ -36,8 +39,10 @@ export function BadgeCarrello({
       : `Carrello, ${totaleArticoli} ${totaleArticoli === 1 ? "articolo" : "articoli"}`;
 
   return (
-    <Link
-      href="/la-spesa"
+    <button
+      type="button"
+      onClick={apri}
+      aria-haspopup="dialog"
       aria-label={descrizione}
       // Tooltip solo sulla variante mobile: l'header desktop resta com'era.
       title={pulita ? descrizione : undefined}
@@ -62,6 +67,6 @@ export function BadgeCarrello({
           ) : null}
         </>
       )}
-    </Link>
+    </button>
   );
 }

@@ -61,7 +61,7 @@ export type CtaItem = {
 
 /** I due pulsanti appaiati in header: pieni entrambi, colori diversi. */
 export const ctaItems: CtaItem[] = [
-  { href: "/la-spesa", label: "Prenota la spesa", variante: "ocra" },
+  { href: "/la-spesa/catalogo", label: "Prenota la spesa", variante: "ocra" },
   { href: "/eventi", label: "Eventi", variante: "verde" },
 ];
 

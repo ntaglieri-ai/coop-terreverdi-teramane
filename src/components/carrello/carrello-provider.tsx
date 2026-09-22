@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useMemo,
+  useState,
   useSyncExternalStore,
   type ReactNode,
 } from "react";
@@ -23,7 +24,13 @@ type CarrelloContextValue = {
   totaleArticoli: number;
   aggiungi: (voce: Omit<VoceCarrello, "quantita">, quantita?: number) => void;
   rimuovi: (id: string) => void;
+  imposta: (id: string, quantita: number) => void;
   svuota: () => void;
+  /** Drawer del carrello: un'unica istanza globale, apribile da più punti
+   * dell'header (icona desktop e mobile) senza duplicare il dialog. */
+  aperto: boolean;
+  apri: () => void;
+  chiudi: () => void;
 };
 
 const CarrelloContext = createContext<CarrelloContextValue | null>(null);
@@ -60,7 +67,19 @@ export function CarrelloProvider({ children }: { children: ReactNode }) {
     scrivi(getSnapshot().filter((v) => v.id !== id));
   }, []);
 
+  const imposta = useCallback((id: string, quantita: number) => {
+    if (quantita <= 0) {
+      scrivi(getSnapshot().filter((v) => v.id !== id));
+      return;
+    }
+    scrivi(getSnapshot().map((v) => (v.id === id ? { ...v, quantita } : v)));
+  }, []);
+
   const svuota = useCallback(() => scrivi([]), []);
+
+  const [aperto, setAperto] = useState(false);
+  const apri = useCallback(() => setAperto(true), []);
+  const chiudi = useCallback(() => setAperto(false), []);
 
   const value = useMemo<CarrelloContextValue>(
     () => ({
@@ -68,9 +87,13 @@ export function CarrelloProvider({ children }: { children: ReactNode }) {
       totaleArticoli: voci.reduce((somma, v) => somma + v.quantita, 0),
       aggiungi,
       rimuovi,
+      imposta,
       svuota,
+      aperto,
+      apri,
+      chiudi,
     }),
-    [voci, aggiungi, rimuovi, svuota],
+    [voci, aggiungi, rimuovi, imposta, svuota, aperto, apri, chiudi],
   );
 
   return (
