@@ -9,6 +9,23 @@
 // ===========================================================================
 
 import { aziendeSocie } from "@/lib/cooperativa";
+import { unsplash, type Immagine } from "@/lib/immagini";
+
+/**
+ * Foto hero della pagina Territorio: colline che scendono verso il mare.
+ *
+ * 3840, non una misura minore: l'hero è a `fill` con `sizes="100vw"`, quindi
+ * su schermi larghi o ad alta densità Next arriva a chiedere fino al
+ * deviceSize più grande di default (vedi lo stesso problema risolto per
+ * l'hero di /eventi).
+ *
+ * TODO FOTO — segnaposto: non le colline teramane vere. Da sostituire quando
+ * la cooperativa fornisce una foto reale del territorio.
+ */
+export const territorioHeroImage: Immagine = {
+  src: unsplash("1762763955558-18020040640a", 3840),
+  alt: "Collina verde che digrada verso il mare calmo",
+};
 
 export type MeseStagionale = {
   mese: string;

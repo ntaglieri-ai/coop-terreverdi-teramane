@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { PageHero } from "@/components/page-hero";
 import { cooperativa } from "@/lib/cooperativa";
 import { territorioImage } from "@/lib/home-content";
-import { calendarioStagionale, comuniPosizione } from "@/lib/territorio-content";
+import {
+  calendarioStagionale,
+  comuniPosizione,
+  territorioHeroImage,
+} from "@/lib/territorio-content";
 
 export const metadata: Metadata = {
   title: "Territorio",
@@ -16,11 +19,36 @@ export const metadata: Metadata = {
 export default function TerritorioPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Territorio"
-        title="Dalle colline teramane al mare"
-        lead="Poche decine di chilometri in cui il terreno cambia carattere salendo dalla costa verso l'interno. È da qui che viene tutto quello che trovi al banco."
-      />
+      <section className="relative isolate overflow-hidden">
+        <div className="relative h-[265px] w-full sm:h-[382px]">
+          <Image
+            src={territorioHeroImage.src}
+            alt={territorioHeroImage.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/90 via-carbone/45 to-carbone/10"
+          />
+        </div>
+
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+            Territorio
+          </p>
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
+            Dalle colline teramane al mare
+          </h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
+            Poche decine di chilometri in cui il terreno cambia carattere
+            salendo dalla costa verso l&apos;interno. È da qui che viene
+            tutto quello che trovi al banco.
+          </p>
+        </Container>
+      </section>
 
       <section className="bg-crema py-24">
         <Container>
