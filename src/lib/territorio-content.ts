@@ -12,20 +12,21 @@ import { aziendeSocie } from "@/lib/cooperativa";
 import type { Immagine } from "@/lib/immagini";
 
 /**
- * Foto hero della pagina Territorio: vigneto che scende verso la costa
- * adriatica, fornita dal cliente al posto del segnaposto Unsplash (quello
- * era palesemente un altrove — costa atlantica, non adriatica).
+ * Foto hero della pagina Territorio: vigneto in collina con vista sulla
+ * costa adriatica, fornita dal cliente al posto del segnaposto Unsplash
+ * (quello era palesemente un altrove — costa atlantica, non adriatica).
  *
- * TODO FOTO — il file è 735×416: sotto le misure che l'hero (fill,
- * sizes="100vw") può arrivare a chiedere su schermi larghi o ad alta
- * densità, quindi viene ingrandita e perde nitidezza (stesso meccanismo
- * risolto per l'hero di /eventi, ma lì rialzando la risoluzione della
- * sorgente Unsplash — qui non è possibile perché il file è quello che è).
- * Da sostituire con l'originale ad alta risoluzione appena disponibile.
+ * TODO FOTO — il file è 1170×585: meglio del primo tentativo (735×416), ma
+ * ancora sotto le misure che l'hero (fill, sizes="100vw") può arrivare a
+ * chiedere su schermi larghi o ad alta densità, quindi su quelli resta un
+ * po' d'ingrandimento (stesso meccanismo risolto per l'hero di /eventi, ma
+ * lì rialzando la risoluzione della sorgente Unsplash — qui non è possibile
+ * perché il file è quello che è). Da sostituire con l'originale ad alta
+ * risoluzione appena disponibile.
  */
 export const territorioHeroImage: Immagine = {
-  src: "/hero-territorio-vigneto.webp",
-  alt: "Filari di vigna in autunno che scendono verso la costa adriatica",
+  src: "/hero-territorio-vigneto.jpg",
+  alt: "Filari di vigna in collina con vista sulle colline teramane e la costa adriatica",
 };
 
 export type MeseStagionale = {
