@@ -9,22 +9,23 @@
 // ===========================================================================
 
 import { aziendeSocie } from "@/lib/cooperativa";
-import { unsplash, type Immagine } from "@/lib/immagini";
+import type { Immagine } from "@/lib/immagini";
 
 /**
- * Foto hero della pagina Territorio: colline che scendono verso il mare.
+ * Foto hero della pagina Territorio: vigneto che scende verso la costa
+ * adriatica, fornita dal cliente al posto del segnaposto Unsplash (quello
+ * era palesemente un altrove — costa atlantica, non adriatica).
  *
- * 3840, non una misura minore: l'hero è a `fill` con `sizes="100vw"`, quindi
- * su schermi larghi o ad alta densità Next arriva a chiedere fino al
- * deviceSize più grande di default (vedi lo stesso problema risolto per
- * l'hero di /eventi).
- *
- * TODO FOTO — segnaposto: non le colline teramane vere. Da sostituire quando
- * la cooperativa fornisce una foto reale del territorio.
+ * TODO FOTO — il file è 735×416: sotto le misure che l'hero (fill,
+ * sizes="100vw") può arrivare a chiedere su schermi larghi o ad alta
+ * densità, quindi viene ingrandita e perde nitidezza (stesso meccanismo
+ * risolto per l'hero di /eventi, ma lì rialzando la risoluzione della
+ * sorgente Unsplash — qui non è possibile perché il file è quello che è).
+ * Da sostituire con l'originale ad alta risoluzione appena disponibile.
  */
 export const territorioHeroImage: Immagine = {
-  src: unsplash("1762763955558-18020040640a", 3840),
-  alt: "Collina verde che digrada verso il mare calmo",
+  src: "/hero-territorio-vigneto.webp",
+  alt: "Filari di vigna in autunno che scendono verso la costa adriatica",
 };
 
 export type MeseStagionale = {
