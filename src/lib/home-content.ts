@@ -97,6 +97,26 @@ export const categorieProdotto: CategoriaProdotto[] = [
   },
 ];
 
+export type VoceRassegna = {
+  testata: string;
+  data: string;
+  titolo: string;
+};
+
+/** TODO DATI — da sostituire con la lista aggiornabile dal pannello. */
+export const rassegnaInEvidenza: VoceRassegna[] = [
+  {
+    testata: "Testata da definire",
+    data: "Data da definire",
+    titolo: "Titolo dell'articolo in evidenza",
+  },
+  {
+    testata: "Testata da definire",
+    data: "Data da definire",
+    titolo: "Secondo articolo in evidenza",
+  },
+];
+
 export type EventoInEvidenza = {
   titolo: string;
   luogo: string;
