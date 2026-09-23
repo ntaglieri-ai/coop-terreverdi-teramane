@@ -7,10 +7,15 @@ import { getSupabaseServer } from "@/lib/supabase/server";
  * tavoli — coerente con "Serate piccole, i produttori seduti al tavolo con
  * te". Non più un segnaposto Unsplash.
  *
- * TODO FOTO — 2000×1333: buona fino a schermi larghi (1920px), ma sotto il
- * deviceSize più grande che l'hero (fill, sizes="100vw") può arrivare a
- * chiedere su schermi ad alta densità (3840px di default). Da sostituire
- * con l'originale a risoluzione ancora più alta se disponibile.
+ * Ritagliata rispetto all'originale (2000×1333 → 1540×1333): lo scatto del
+ * cliente aveva persone in movimento sfocate sul lato sinistro — mosso da
+ * tempo di posa lungo, non un problema di risoluzione, quindi non
+ * correggibile via codice — tolte tagliando quella porzione, non ridisegnate.
+ *
+ * TODO FOTO — sotto il deviceSize più grande che l'hero (fill,
+ * sizes="100vw") può arrivare a chiedere su schermi ad alta densità (3840px
+ * di default). Da sostituire con l'originale a risoluzione ancora più alta
+ * se disponibile.
  */
 export const eventiHeroImage: Immagine = {
   src: "/hero-eventi-degustazione.jpg",

@@ -136,7 +136,7 @@ export default async function EventiPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-carbone/85 via-carbone/25 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/95 via-carbone/60 to-carbone/20"
           />
         </div>
 
