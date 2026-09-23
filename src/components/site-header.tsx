@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BadgeCarrello } from "@/components/carrello/badge-carrello";
 import { AzioniHeaderMobile } from "@/components/mobile/azioni-header";
+import { MenuMobile } from "@/components/mobile/menu-mobile";
 import { VociNav } from "@/components/voci-nav";
 import { ctaItems } from "@/lib/navigation";
 
@@ -109,33 +110,13 @@ export function SiteHeader() {
             <BadgeCarrello />
           </span>
 
-          {/* Fra lg e xl il menu desktop è ancora collassato: resta il
-              <details>, invariato. Sotto lg comanda AzioniHeaderMobile. */}
-          <details className="group relative hidden lg:block xl:hidden">
-            <summary
-              aria-label="Apri il menu"
-              className="flex h-10 w-10 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-border text-sm font-medium text-carbone md:w-auto md:px-4 [&::-webkit-details-marker]:hidden"
-            >
-              <span aria-hidden="true" className="md:hidden">
-                ☰
-              </span>
-              <span className="hidden md:inline">Menu</span>
-              <span
-                aria-hidden="true"
-                className="hidden transition-transform group-open:rotate-180 md:inline"
-              >
-                ▾
-              </span>
-            </summary>
-            <nav
-              aria-label="Navigazione principale"
-              className="absolute right-0 mt-3 w-72 rounded-2xl border border-border bg-surface p-3 shadow-lg"
-            >
-              <ul className="flex flex-col">
-                <VociNav compatto />
-              </ul>
-            </nav>
-          </details>
+          {/* Fra lg e xl il menu desktop è ancora collassato: stesso
+              hamburger del mobile (icona, si chiude alla navigazione, con
+              Esc e click fuori), non più il vecchio <details> che restava
+              aperto. Sotto lg comanda AzioniHeaderMobile. */}
+          <div className="hidden lg:block xl:hidden">
+            <MenuMobile />
+          </div>
 
           <AzioniHeaderMobile />
         </div>
