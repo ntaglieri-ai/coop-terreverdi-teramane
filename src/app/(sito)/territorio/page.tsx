@@ -27,11 +27,11 @@ export default function TerritorioPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-[center_30%]"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-carbone/90 via-carbone/45 to-carbone/10"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/95 via-carbone/60 to-carbone/20"
           />
         </div>
 
