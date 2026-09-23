@@ -9,7 +9,7 @@ import {
   comuniPosizione,
   territorioHeroImage,
 } from "@/lib/territorio-content";
-import territorioHeroFoto from "../../../../public/hero-territorio-vigneto.jpg";
+import territorioHeroFoto from "../../../../public/hero-territorio-vigneto.webp";
 
 export const metadata: Metadata = {
   title: "Territorio",
@@ -22,14 +22,16 @@ export default function TerritorioPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[265px] w-full sm:h-[382px]">
+          {/* unoptimized: vedi lo stesso commento in Hero (home) — file già
+              pre-compresso in WebP, servito come asset statico invece che
+              dall'ottimizzatore on-demand di Vercel. */}
           <Image
             src={territorioHeroFoto}
             alt={territorioHeroImage.alt}
             fill
             priority
             placeholder="blur"
-            quality={45}
-            sizes="100vw"
+            unoptimized
             className="object-cover object-[center_30%]"
           />
           <div

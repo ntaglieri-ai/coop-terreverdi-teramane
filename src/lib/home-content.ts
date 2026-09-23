@@ -17,12 +17,16 @@ import { unsplash, type Immagine } from "@/lib/immagini";
 /**
  * Foto del banco, fornita dal cliente.
  *
+ * Il componente Hero importa il file direttamente (serve import statico,
+ * non questo `src`, per il blur-up automatico) — questo resta solo per il
+ * testo alternativo e come riferimento.
+ *
  * TODO CLIENTE — il file è 1200×800: su schermi larghi viene ingrandito.
  * Chiedere l'originale ad alta risoluzione, e una foto del banco reale del
  * Mercato Contadino appena disponibile.
  */
 export const heroImage: Immagine = {
-  src: "/hero-mercato-contadino.jpg",
+  src: "/hero-mercato-contadino.webp",
   alt: "Banco di mercato con cassette di pomodori, peperoni, zucchine, cetrioli, melanzane e carciofi",
 };
 

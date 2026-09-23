@@ -3,19 +3,24 @@ import { Container } from "@/components/container";
 import { heroImage, rassegnaInEvidenza } from "@/lib/home-content";
 import { Contattaci } from "@/components/home/contattaci";
 import { TickerRassegna } from "@/components/home/ticker-rassegna";
-import heroFoto from "../../../public/hero-mercato-contadino.jpg";
+import heroFoto from "../../../public/hero-mercato-contadino.webp";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
+      {/* unoptimized: il file è già pre-compresso in WebP (import statico,
+          quindi resta il blur-up automatico). Senza, ogni prima richiesta di
+          una combinazione larghezza/qualità mai vista da un deploy passa
+          dall'ottimizzatore on-demand di Vercel, che sulla prima visita reale
+          dopo un deploy introduce un ritardo percepibile: qui l'hero diventa
+          un asset statico puro, servito dalla CDN fin dal deploy. */}
       <Image
         src={heroFoto}
         alt={heroImage.alt}
         fill
         priority
         placeholder="blur"
-        quality={60}
-        sizes="100vw"
+        unoptimized
         className="object-cover"
       />
 

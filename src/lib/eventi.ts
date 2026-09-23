@@ -10,14 +10,12 @@ import { getSupabaseServer } from "@/lib/supabase/server";
  * scatto (primo piano a fuoco), non mosso o un problema di risoluzione — si
  * legge come fotografia editoriale, non come difetto.
  *
- * TODO FOTO — sotto il deviceSize più grande che l'hero (fill,
- * sizes="100vw") può arrivare a chiedere su schermi ad alta densità (3840px
- * di default), ma l'ottimizzatore di Next non ingrandisce oltre la
- * risoluzione reale del file — al più lo serve alla sua dimensione nativa.
- * Da sostituire con l'originale a risoluzione più alta se disponibile.
+ * La pagina importa il file WebP direttamente (serve import statico, non
+ * questo `src`, per il blur-up automatico) — questo resta solo per il testo
+ * alternativo e come riferimento.
  */
 export const eventiHeroImage: Immagine = {
-  src: "/hero-eventi-degustazione.jpg",
+  src: "/hero-eventi-degustazione.webp",
   alt: "Calice di vino bianco versato al tavolo, con altri calici e ospiti sullo sfondo sfocato",
 };
 

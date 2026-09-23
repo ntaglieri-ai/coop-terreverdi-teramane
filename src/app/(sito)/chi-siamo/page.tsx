@@ -31,12 +31,19 @@ export default function ChiSiamoPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[265px] w-full sm:h-[382px]">
+          {/* unoptimized: segnaposto Unsplash, quindi remoto — anche per un
+              URL remoto l'ottimizzatore on-demand di Vercel introduce un
+              ritardo percepibile sulla prima richiesta di ogni combinazione
+              larghezza/qualità dopo un deploy (vedi lo stesso commento in
+              Hero, home). Qui il file arriva già alla dimensione fissata
+              dalla query string, quindi saltare l'ottimizzatore costa poco
+              in più scaricato e toglie di mezzo quel ritardo. */}
           <Image
             src={chiSiamoHeroImage.src}
             alt={chiSiamoHeroImage.alt}
             fill
             priority
-            sizes="100vw"
+            unoptimized
             className="object-cover"
           />
           <div

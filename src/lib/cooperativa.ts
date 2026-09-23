@@ -17,16 +17,17 @@ export const cooperativa = {
 /**
  * Foto hero della pagina Chi siamo.
  *
- * 3840, non una misura minore: l'hero è a `fill` con `sizes="100vw"`, quindi
- * su schermi larghi o ad alta densità Next arriva a chiedere fino al
- * deviceSize più grande di default (vedi lo stesso problema risolto per
- * l'hero di /eventi).
+ * 2000: l'hero è `unoptimized` (vedi il commento in pagina), quindi senza le
+ * varianti responsive di Next il file arriva sempre a questa dimensione,
+ * anche su mobile — 2000 è il punto di mezzo fra restare nitidi sugli
+ * schermi larghi e non scaricare inutilmente un file enorme sui piccoli.
  *
  * TODO FOTO — segnaposto: colline coltivate, non le colline teramane vere.
- * Da sostituire quando la cooperativa fornisce una foto reale del territorio.
+ * Da sostituire quando la cooperativa fornisce una foto reale del territorio
+ * (a quel punto conviene renderla locale e WebP come le altre tre hero).
  */
 export const chiSiamoHeroImage: Immagine = {
-  src: unsplash("1782070308141-7d35f92f6150", 3840),
+  src: unsplash("1782070308141-7d35f92f6150", 2000),
   alt: "Cipressi e casale di campagna su colline coltivate, luce dorata al tramonto",
 };
 

@@ -15,7 +15,7 @@ import {
   ultimiPosti,
   type EventoPubblico,
 } from "@/lib/eventi";
-import eventiHeroFoto from "../../../../public/hero-eventi-degustazione.jpg";
+import eventiHeroFoto from "../../../../public/hero-eventi-degustazione.webp";
 
 export const metadata: Metadata = {
   title: "Eventi & Degustazioni",
@@ -125,14 +125,16 @@ export default async function EventiPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[300px] w-full sm:h-[435px]">
+          {/* unoptimized: vedi lo stesso commento in Hero (home) — file già
+              pre-compresso in WebP, servito come asset statico invece che
+              dall'ottimizzatore on-demand di Vercel. */}
           <Image
             src={eventiHeroFoto}
             alt={eventiHeroImage.alt}
             fill
             priority
             placeholder="blur"
-            quality={60}
-            sizes="100vw"
+            unoptimized
             className="object-cover"
           />
           <div
