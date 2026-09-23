@@ -3,15 +3,17 @@ import { Container } from "@/components/container";
 import { heroImage, rassegnaInEvidenza } from "@/lib/home-content";
 import { Contattaci } from "@/components/home/contattaci";
 import { TickerRassegna } from "@/components/home/ticker-rassegna";
+import heroFoto from "../../../public/hero-mercato-contadino.jpg";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <Image
-        src={heroImage.src}
+        src={heroFoto}
         alt={heroImage.alt}
         fill
         priority
+        placeholder="blur"
         sizes="100vw"
         className="object-cover"
       />

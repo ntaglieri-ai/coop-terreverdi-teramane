@@ -9,6 +9,7 @@ import {
   comuniPosizione,
   territorioHeroImage,
 } from "@/lib/territorio-content";
+import territorioHeroFoto from "../../../../public/hero-territorio-vigneto.jpg";
 
 export const metadata: Metadata = {
   title: "Territorio",
@@ -22,10 +23,11 @@ export default function TerritorioPage() {
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[265px] w-full sm:h-[382px]">
           <Image
-            src={territorioHeroImage.src}
+            src={territorioHeroFoto}
             alt={territorioHeroImage.alt}
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-[center_30%]"
           />
