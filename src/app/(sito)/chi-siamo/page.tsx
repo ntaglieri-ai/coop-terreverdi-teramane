@@ -41,7 +41,7 @@ export default function ChiSiamoPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-carbone/85 via-carbone/25 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/90 via-carbone/45 to-carbone/10"
           />
         </div>
 
