@@ -14,6 +14,22 @@ export const cooperativa = {
   numeroAziende: 6,
 };
 
+/**
+ * Foto hero della pagina Chi siamo.
+ *
+ * 3840, non una misura minore: l'hero è a `fill` con `sizes="100vw"`, quindi
+ * su schermi larghi o ad alta densità Next arriva a chiedere fino al
+ * deviceSize più grande di default (vedi lo stesso problema risolto per
+ * l'hero di /eventi).
+ *
+ * TODO FOTO — segnaposto: colline coltivate, non le colline teramane vere.
+ * Da sostituire quando la cooperativa fornisce una foto reale del territorio.
+ */
+export const chiSiamoHeroImage: Immagine = {
+  src: unsplash("1782070308141-7d35f92f6150", 3840),
+  alt: "Cipressi e casale di campagna su colline coltivate, luce dorata al tramonto",
+};
+
 export const puntoVendita = {
   nome: "Mercato Contadino",
   via: "Via Galileo Galilei 24",

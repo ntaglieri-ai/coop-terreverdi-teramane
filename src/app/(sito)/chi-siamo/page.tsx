@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/container";
-import { PageHero } from "@/components/page-hero";
 import { Produttori } from "@/components/produttori";
-import { cooperativa, puntoVendita } from "@/lib/cooperativa";
+import { chiSiamoHeroImage, cooperativa, puntoVendita } from "@/lib/cooperativa";
 
 export const metadata: Metadata = {
   title: "Chi siamo",
@@ -29,11 +29,36 @@ const blocchi = [
 export default function ChiSiamoPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Chi siamo"
-        title="Sei aziende agricole, una cooperativa"
-        lead={`Dal ${cooperativa.annoFondazione} lavoriamo insieme sulle colline teramane e vendiamo quello che produciamo al ${puntoVendita.nome} di ${puntoVendita.comune}.`}
-      />
+      <section className="relative isolate overflow-hidden">
+        <div className="relative h-[265px] w-full sm:h-[382px]">
+          <Image
+            src={chiSiamoHeroImage.src}
+            alt={chiSiamoHeroImage.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/85 via-carbone/25 to-transparent"
+          />
+        </div>
+
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+            Chi siamo
+          </p>
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
+            Sei aziende agricole, una cooperativa
+          </h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
+            Dal {cooperativa.annoFondazione} lavoriamo insieme sulle colline
+            teramane e vendiamo quello che produciamo al {puntoVendita.nome}{" "}
+            di {puntoVendita.comune}.
+          </p>
+        </Container>
+      </section>
 
       <Container className="grid gap-6 py-16 md:grid-cols-3">
         {blocchi.map((blocco) => (
