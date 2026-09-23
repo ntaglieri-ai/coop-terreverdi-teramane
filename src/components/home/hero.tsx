@@ -14,6 +14,7 @@ export function Hero() {
         fill
         priority
         placeholder="blur"
+        quality={60}
         sizes="100vw"
         className="object-cover"
       />

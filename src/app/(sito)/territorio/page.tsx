@@ -28,6 +28,7 @@ export default function TerritorioPage() {
             fill
             priority
             placeholder="blur"
+            quality={60}
             sizes="100vw"
             className="object-cover object-[center_30%]"
           />

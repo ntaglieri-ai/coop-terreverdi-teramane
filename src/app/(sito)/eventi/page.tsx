@@ -124,13 +124,14 @@ export default async function EventiPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[265px] w-full sm:h-[382px]">
+        <div className="relative h-[300px] w-full sm:h-[435px]">
           <Image
             src={eventiHeroFoto}
             alt={eventiHeroImage.alt}
             fill
             priority
             placeholder="blur"
+            quality={60}
             sizes="100vw"
             className="object-cover"
           />
