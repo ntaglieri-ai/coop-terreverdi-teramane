@@ -1,23 +1,20 @@
-import { unsplash, type Immagine } from "@/lib/immagini";
+import type { Immagine } from "@/lib/immagini";
 import { getSupabaseServer } from "@/lib/supabase/server";
 
 /**
- * TODO FOTO — segnaposto da Unsplash, come le altre immagini del sito finché
- * la cooperativa non fornisce scatti reali della Sala Degustazioni.
+ * Foto hero della pagina Eventi, fornita dal cliente: terrazza di
+ * degustazione la sera, tende a vela e luci a bulbo, ospiti seduti ai
+ * tavoli — coerente con "Serate piccole, i produttori seduti al tavolo con
+ * te". Non più un segnaposto Unsplash.
+ *
+ * TODO FOTO — 2000×1333: buona fino a schermi larghi (1920px), ma sotto il
+ * deviceSize più grande che l'hero (fill, sizes="100vw") può arrivare a
+ * chiedere su schermi ad alta densità (3840px di default). Da sostituire
+ * con l'originale a risoluzione ancora più alta se disponibile.
  */
 export const eventiHeroImage: Immagine = {
-  // 3840, non 1800: l'hero è a `fill` con `sizes="100vw"`, quindi su schermi
-  // larghi o ad alta densità Next arriva a chiedere fino al deviceSize più
-  // grande (3840px di default). Con l'URL fissato a una larghezza minore,
-  // l'ottimizzatore ingrandiva la foto invece di poterla solo rimpicciolire.
-  //
-  // La foto precedente (1768121496277-8b9887bd6f7f) restava sfocata anche
-  // dopo quella correzione: luci e sfondo nitidi, solo le persone mosse,
-  // segno di un tempo di posa lungo nello scatto originale, non di un
-  // problema di rendering. Sostituita con un dehors sera senza persone,
-  // stessa atmosfera, niente da avere mosso.
-  src: unsplash("1759866614103-376bde0fc66f", 3840),
-  alt: "Dehors di un locale apparecchiato di sera, illuminato da file di luci a bulbo appese",
+  src: "/hero-eventi-degustazione.jpg",
+  alt: "Terrazza di degustazione la sera, tende a vela e luci a bulbo, ospiti seduti ai tavoli",
 };
 
 export type EventoPubblico = {

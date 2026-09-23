@@ -15,6 +15,7 @@ import {
   ultimiPosti,
   type EventoPubblico,
 } from "@/lib/eventi";
+import eventiHeroFoto from "../../../../public/hero-eventi-degustazione.jpg";
 
 export const metadata: Metadata = {
   title: "Eventi & Degustazioni",
@@ -125,10 +126,11 @@ export default async function EventiPage() {
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[265px] w-full sm:h-[382px]">
           <Image
-            src={eventiHeroImage.src}
+            src={eventiHeroFoto}
             alt={eventiHeroImage.alt}
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover"
           />
