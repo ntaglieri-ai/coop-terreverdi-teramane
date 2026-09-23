@@ -11,11 +11,13 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-    // 60 in aggiunta al 75 di default: le hero a piena larghezza sono le
-    // prime foto scaricate a ogni apertura di pagina (priority + preload),
-    // quindi pesano sul primo caricamento. A 60 il peso scende parecchio
-    // senza perdita visibile su una foto vista di sfuggita in un banner.
-    qualities: [60, 75],
+    // 45 e 60 in aggiunta al 75 di default: le hero a piena larghezza sono
+    // le prime foto scaricate a ogni apertura di pagina (priority + preload),
+    // quindi pesano sul primo caricamento. 45 serve alla foto di /territorio:
+    // fogliame fitto, comprime peggio delle altre a parità di qualità
+    // percepita, quindi ne beneficia di più. Nessuna perdita visibile su
+    // nessuna delle tre confrontando gli screenshot.
+    qualities: [45, 60, 75],
   },
   async redirects() {
     return [
