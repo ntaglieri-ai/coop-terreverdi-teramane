@@ -7,15 +7,22 @@ import { getSupabaseServer } from "@/lib/supabase/server";
  * tavoli — coerente con "Serate piccole, i produttori seduti al tavolo con
  * te". Non più un segnaposto Unsplash.
  *
- * Ritagliata rispetto all'originale (2000×1333 → 1540×1333): lo scatto del
- * cliente aveva persone in movimento sfocate sul lato sinistro — mosso da
- * tempo di posa lungo, non un problema di risoluzione, quindi non
- * correggibile via codice — tolte tagliando quella porzione, non ridisegnate.
+ * Ritagliata rispetto all'originale (2000×1333 → 1620×1333): lo scatto del
+ * cliente aveva una persona in movimento sfocata sul margine sinistro —
+ * mosso da tempo di posa lungo, non un problema di risoluzione, quindi non
+ * correggibile via codice — tolta tagliando quella porzione, non ridisegnata.
  *
- * TODO FOTO — sotto il deviceSize più grande che l'hero (fill,
+ * Il gruppo seduto a destra resta morbido anche a piena risoluzione (fuoco
+ * dello scatto originale): non è ingrandimento, verificato scaricando
+ * l'immagine così come la serve l'ottimizzatore. Compensato in pagina con
+ * `object-position` per tenere la fetta visibile dell'hero sulla vela e le
+ * luci, sempre nitide.
+ *
+ * TODO FOTO — 1620×1333: sotto il deviceSize più grande che l'hero (fill,
  * sizes="100vw") può arrivare a chiedere su schermi ad alta densità (3840px
- * di default). Da sostituire con l'originale a risoluzione ancora più alta
- * se disponibile.
+ * di default), ma l'ottimizzatore di Next non ingrandisce oltre la
+ * risoluzione reale del file — al più lo serve alla sua dimensione nativa.
+ * Da sostituire con l'originale a risoluzione più alta se disponibile.
  */
 export const eventiHeroImage: Immagine = {
   src: "/hero-eventi-degustazione.jpg",

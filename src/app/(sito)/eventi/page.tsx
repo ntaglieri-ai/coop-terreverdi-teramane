@@ -125,6 +125,16 @@ export default async function EventiPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="relative h-[265px] w-full sm:h-[382px]">
+          {/* object-[center_18%]: l'hero è bassa (265-382px) contro una foto
+              molto più alta, quindi a schermo largo si vede solo una fetta
+              sottile dell'immagine (circa un quarto dell'altezza). Con
+              l'ancoraggio al centro quella fetta cadeva proprio sul gruppo
+              seduto a destra, morbido anche nello scatto originale del
+              cliente (fuoco/tempo di posa, non un problema di rendering: già
+              verificato sulla foto alla sua risoluzione reale, senza alcun
+              ingrandimento). Spostato in alto: la fetta visibile ora è quasi
+              tutta vela e luci, sempre nitide, con le persone solo accennate
+              sul bordo inferiore. */}
           <Image
             src={eventiHeroFoto}
             alt={eventiHeroImage.alt}
@@ -132,7 +142,7 @@ export default async function EventiPage() {
             priority
             placeholder="blur"
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-[center_18%]"
           />
           <div
             aria-hidden="true"
