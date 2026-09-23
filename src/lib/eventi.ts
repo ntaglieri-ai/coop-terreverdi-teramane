@@ -6,7 +6,12 @@ import { getSupabaseServer } from "@/lib/supabase/server";
  * la cooperativa non fornisce scatti reali della Sala Degustazioni.
  */
 export const eventiHeroImage: Immagine = {
-  src: unsplash("1768121496277-8b9887bd6f7f", 1800),
+  // 3840, non 1800: l'hero è a `fill` con `sizes="100vw"`, quindi su schermi
+  // larghi o ad alta densità Next arriva a chiedere fino al deviceSize più
+  // grande (3840px di default). Con l'URL fissato a una larghezza minore,
+  // l'ottimizzatore ingrandiva la foto invece di poterla solo rimpicciolire,
+  // ed è quello a renderla sfocata.
+  src: unsplash("1768121496277-8b9887bd6f7f", 3840),
   alt: "Terrazza panoramica con luci a bulbo e tavoli apparecchiati al crepuscolo, colline sullo sfondo",
 };
 
