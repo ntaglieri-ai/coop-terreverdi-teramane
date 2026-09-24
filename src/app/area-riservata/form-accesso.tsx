@@ -42,6 +42,11 @@ export function FormAccesso({
   const [inCorso, setInCorso] = useState(false);
   const [errore, setErrore] = useState<string | null>(config.erroreIniziale);
 
+  const [recuperoAttivo, setRecuperoAttivo] = useState(false);
+  const [recuperoInCorso, setRecuperoInCorso] = useState(false);
+  const [recuperoErrore, setRecuperoErrore] = useState<string | null>(null);
+  const [recuperoInviato, setRecuperoInviato] = useState(false);
+
   useEffect(() => {
     const supabase = config.supabase;
     if (!supabase) return;
@@ -104,6 +109,43 @@ export function FormAccesso({
     }
   }
 
+  async function recuperaPassword(evento: FormEvent<HTMLFormElement>) {
+    evento.preventDefault();
+    setRecuperoErrore(null);
+    setRecuperoInCorso(true);
+
+    const form = new FormData(evento.currentTarget);
+    const email = String(form.get("email") ?? "");
+
+    if (!config.supabase) {
+      setRecuperoErrore("Recupero non disponibile: configurazione mancante.");
+      setRecuperoInCorso(false);
+      return;
+    }
+
+    try {
+      // Supabase risponde comunque con successo se l'email non è registrata
+      // (non vuole confermare o smentire quali indirizzi esistono): l'errore
+      // qui segnala solo un problema tecnico reale (rete, configurazione),
+      // non l'assenza dell'account.
+      const { error } = await config.supabase.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${window.location.origin}/area-riservata/nuova-password`,
+        },
+      );
+      if (error) {
+        setRecuperoErrore("Non è stato possibile inviare l'email di recupero.");
+      } else {
+        setRecuperoInviato(true);
+      }
+    } catch {
+      setRecuperoErrore("Non è stato possibile inviare l'email di recupero.");
+    } finally {
+      setRecuperoInCorso(false);
+    }
+  }
+
   async function esci() {
     try {
       await config.supabase?.auth.signOut();
@@ -117,6 +159,82 @@ export function FormAccesso({
       <p className="mx-auto max-w-md text-sm text-foreground-muted">
         Verifica della sessione…
       </p>
+    );
+  }
+
+  if (recuperoAttivo) {
+    return (
+      <div className="mx-auto max-w-md rounded-2xl border border-border bg-surface p-8">
+        <h2 className="font-serif text-xl font-semibold text-verde-800">
+          Rinnova password
+        </h2>
+
+        {recuperoInviato ? (
+          <>
+            <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
+              Se l&apos;indirizzo è registrato, arriverà a breve un&apos;email
+              con il link per scegliere una nuova password.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setRecuperoAttivo(false);
+                setRecuperoInviato(false);
+              }}
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-verde-700 hover:text-terra-600"
+            >
+              <span aria-hidden="true">←</span> Torna al login
+            </button>
+          </>
+        ) : (
+          <form onSubmit={recuperaPassword} className="mt-3">
+            <p className="text-sm leading-relaxed text-foreground-muted">
+              Inserisci l&apos;email con cui accedi: ti mandiamo un link per
+              impostare una nuova password.
+            </p>
+
+            <div className="mt-5 flex flex-col gap-2">
+              <label
+                htmlFor="email-recupero"
+                className="text-sm font-medium text-carbone"
+              >
+                Email
+              </label>
+              <input
+                id="email-recupero"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="h-12 rounded-xl border border-border bg-crema px-4 text-sm text-carbone outline-none focus:border-verde-500"
+              />
+            </div>
+
+            {recuperoErrore ? (
+              <p role="alert" className="mt-4 text-sm text-terra-600">
+                {recuperoErrore}
+              </p>
+            ) : null}
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row-reverse">
+              <button
+                type="submit"
+                disabled={recuperoInCorso}
+                className="inline-flex h-13 items-center justify-center rounded-full bg-verde-700 px-6 text-base font-semibold text-white transition-colors hover:bg-verde-800 disabled:opacity-60"
+              >
+                {recuperoInCorso ? "Invio in corso…" : "Invia link di recupero"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setRecuperoAttivo(false)}
+                className="inline-flex h-13 items-center justify-center rounded-full border border-verde-300 px-6 text-sm font-semibold text-verde-700 transition-colors hover:border-terra-400 hover:text-terra-600"
+              >
+                Torna al login
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     );
   }
 
@@ -181,6 +299,13 @@ export function FormAccesso({
             required
             className="h-12 rounded-xl border border-border bg-crema px-4 text-sm text-carbone outline-none focus:border-verde-500"
           />
+          <button
+            type="button"
+            onClick={() => setRecuperoAttivo(true)}
+            className="self-end text-xs font-semibold text-verde-700 hover:text-terra-600"
+          >
+            Password dimenticata?
+          </button>
         </div>
 
         {errore ? (
