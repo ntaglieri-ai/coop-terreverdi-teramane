@@ -15,20 +15,16 @@ export const cooperativa = {
 };
 
 /**
- * Foto hero della pagina Chi siamo.
+ * Foto hero della pagina Chi siamo: vigneto al tramonto, fornita dal
+ * cliente al posto del segnaposto Unsplash.
  *
- * 2000: l'hero è `unoptimized` (vedi il commento in pagina), quindi senza le
- * varianti responsive di Next il file arriva sempre a questa dimensione,
- * anche su mobile — 2000 è il punto di mezzo fra restare nitidi sugli
- * schermi larghi e non scaricare inutilmente un file enorme sui piccoli.
- *
- * TODO FOTO — segnaposto: colline coltivate, non le colline teramane vere.
- * Da sostituire quando la cooperativa fornisce una foto reale del territorio
- * (a quel punto conviene renderla locale e WebP come le altre tre hero).
+ * La pagina importa il file WebP direttamente (serve import statico, non
+ * questo `src`, per il blur-up automatico) — questo resta solo per il testo
+ * alternativo e come riferimento.
  */
 export const chiSiamoHeroImage: Immagine = {
-  src: unsplash("1782070308141-7d35f92f6150", 2000),
-  alt: "Cipressi e casale di campagna su colline coltivate, luce dorata al tramonto",
+  src: "/hero-chi-siamo-vigneto.webp",
+  alt: "Filari di vigna al tramonto, con il sole che sorge dietro le colline",
 };
 
 export const puntoVendita = {

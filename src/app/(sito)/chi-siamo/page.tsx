@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { Produttori } from "@/components/produttori";
 import { chiSiamoHeroImage, cooperativa, puntoVendita } from "@/lib/cooperativa";
+import chiSiamoHeroFoto from "../../../../public/hero-chi-siamo-vigneto.webp";
 
 export const metadata: Metadata = {
   title: "Chi siamo",
@@ -36,20 +37,21 @@ export default function ChiSiamoPage() {
             larghezza fino a un tetto, così l'inquadratura resta proporzionata
             invece di schiacciarsi. */}
         <div className="relative h-[clamp(265px,26vw,520px)] w-full">
-          {/* unoptimized: segnaposto Unsplash, quindi remoto — anche per un
-              URL remoto l'ottimizzatore on-demand di Vercel introduce un
-              ritardo percepibile sulla prima richiesta di ogni combinazione
-              larghezza/qualità dopo un deploy (vedi lo stesso commento in
-              Hero, home). Qui il file arriva già alla dimensione fissata
-              dalla query string, quindi saltare l'ottimizzatore costa poco
-              in più scaricato e toglie di mezzo quel ritardo. */}
+          {/* unoptimized: vedi lo stesso commento in Hero (home) — file già
+              pre-compresso in WebP, servito come asset statico invece che
+              dall'ottimizzatore on-demand di Vercel.
+              object-position: il sole e la linea dell'orizzonte stanno a
+              circa un terzo dall'alto nello scatto originale — su hero molto
+              larghe e basse il crop verticale li spingerebbe fuori inquadratura
+              se centrato, quindi il punto di riferimento resta più in alto. */}
           <Image
-            src={chiSiamoHeroImage.src}
+            src={chiSiamoHeroFoto}
             alt={chiSiamoHeroImage.alt}
             fill
             priority
+            placeholder="blur"
             unoptimized
-            className="object-cover"
+            className="object-cover object-[center_35%]"
           />
           {/* Overlay più leggero delle altre hero: la foto è già calda (ora
               dorata), un velo scuro come su Territorio/Eventi la rendeva
