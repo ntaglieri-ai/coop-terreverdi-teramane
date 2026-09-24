@@ -24,17 +24,12 @@ export function Hero() {
         className="object-cover"
       />
 
-      {/* La foto del banco è chiara e molto carica di dettaglio: serve un
-          overlay più deciso di quello che bastava sulla collina. Due strati —
-          gradiente verticale per il testo in basso, velo verde per legare la
-          foto alla palette. */}
+      {/* Solo il gradiente verticale per il testo in basso — il velo verde a
+          multiply su tutta la foto (rimosso) la rendeva torbida/fangosa
+          invece di legarla alla palette. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-verde-900 via-verde-900/80 via-45% to-verde-900/10"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-verde-900/15 mix-blend-multiply"
+        className="absolute inset-0 bg-gradient-to-t from-verde-900/85 via-verde-900/45 via-45% to-transparent"
       />
 
       <div className="relative z-10 flex min-h-[78vh] items-end">

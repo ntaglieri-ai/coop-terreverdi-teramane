@@ -128,8 +128,12 @@ export default async function EventiPage() {
             molto larghi (desktop grandi, ultrawide) un valore fisso lascia
             l'hero larghissima e bassa, "a striscia" — qui cresce con la
             larghezza fino a un tetto, così l'inquadratura resta proporzionata
-            invece di schiacciarsi. */}
-        <div className="relative h-[clamp(300px,30vw,580px)] w-full">
+            invece di schiacciarsi.
+            Più alta delle altre due hero (base e tetto più alti): la foto è
+            un primo piano di bicchieri, con un taglio basso il vetro in
+            primo piano riempie quasi tutta l'inquadratura — serve più
+            respiro verticale per non sembrare uno zoom esagerato. */}
+        <div className="relative h-[clamp(360px,36vw,680px)] w-full">
           {/* unoptimized: vedi lo stesso commento in Hero (home) — file già
               pre-compresso in WebP, servito come asset statico invece che
               dall'ottimizzatore on-demand di Vercel. */}
@@ -148,14 +152,14 @@ export default async function EventiPage() {
           />
         </div>
 
-        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8 lg:pb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200 lg:text-sm">
             Sala Degustazioni
           </p>
-          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl lg:max-w-3xl lg:text-5xl 2xl:text-6xl">
             Eventi &amp; degustazioni
           </h1>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base lg:max-w-2xl lg:text-lg">
             Serate piccole, i produttori seduti al tavolo con te. I posti si
             prenotano e si pagano online.
           </p>

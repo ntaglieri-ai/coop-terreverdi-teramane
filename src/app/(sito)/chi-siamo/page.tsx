@@ -51,20 +51,23 @@ export default function ChiSiamoPage() {
             unoptimized
             className="object-cover"
           />
+          {/* Overlay più leggero delle altre hero: la foto è già calda (ora
+              dorata), un velo scuro come su Territorio/Eventi la rendeva
+              torbida invece di limitarsi a dare contrasto al testo. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-carbone/90 via-carbone/45 to-carbone/10"
+            className="absolute inset-0 bg-gradient-to-t from-carbone/75 via-carbone/30 to-transparent"
           />
         </div>
 
-        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8 lg:pb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200 lg:text-sm">
             Chi siamo
           </p>
-          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl lg:max-w-3xl lg:text-5xl 2xl:text-6xl">
             Sei aziende agricole, una cooperativa
           </h1>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base lg:max-w-2xl lg:text-lg">
             Dal {cooperativa.annoFondazione} lavoriamo insieme sulle colline
             teramane e vendiamo quello che produciamo al {puntoVendita.nome}{" "}
             di {puntoVendita.comune}.

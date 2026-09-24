@@ -45,14 +45,14 @@ export default function TerritorioPage() {
           />
         </div>
 
-        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200">
+        <Container className="absolute inset-x-0 bottom-0 pb-6 sm:pb-8 lg:pb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terra-200 lg:text-sm">
             Territorio
           </p>
-          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl">
+          <h1 className="mt-2 max-w-2xl font-serif text-3xl font-semibold leading-tight text-white drop-shadow sm:text-4xl lg:max-w-3xl lg:text-5xl 2xl:text-6xl">
             Dalle colline teramane al mare
           </h1>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/90 drop-shadow sm:text-base lg:max-w-2xl lg:text-lg">
             Poche decine di chilometri in cui il terreno cambia carattere
             salendo dalla costa verso l&apos;interno. È da qui che viene
             tutto quello che trovi al banco.
