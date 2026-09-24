@@ -30,7 +30,12 @@ export default function ChiSiamoPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[265px] w-full sm:h-[382px]">
+        {/* Altezza a `clamp()`, non un pixel fisso per breakpoint: su schermi
+            molto larghi (desktop grandi, ultrawide) un valore fisso lascia
+            l'hero larghissima e bassa, "a striscia" — qui cresce con la
+            larghezza fino a un tetto, così l'inquadratura resta proporzionata
+            invece di schiacciarsi. */}
+        <div className="relative h-[clamp(265px,26vw,520px)] w-full">
           {/* unoptimized: segnaposto Unsplash, quindi remoto — anche per un
               URL remoto l'ottimizzatore on-demand di Vercel introduce un
               ritardo percepibile sulla prima richiesta di ogni combinazione

@@ -124,7 +124,12 @@ export default async function EventiPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div className="relative h-[300px] w-full sm:h-[435px]">
+        {/* Altezza a `clamp()`, non un pixel fisso per breakpoint: su schermi
+            molto larghi (desktop grandi, ultrawide) un valore fisso lascia
+            l'hero larghissima e bassa, "a striscia" — qui cresce con la
+            larghezza fino a un tetto, così l'inquadratura resta proporzionata
+            invece di schiacciarsi. */}
+        <div className="relative h-[clamp(300px,30vw,580px)] w-full">
           {/* unoptimized: vedi lo stesso commento in Hero (home) — file già
               pre-compresso in WebP, servito come asset statico invece che
               dall'ottimizzatore on-demand di Vercel. */}
